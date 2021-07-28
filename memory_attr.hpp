@@ -2,18 +2,19 @@
 #include <sys/mman.h>
 
 namespace memory  {
-    
-    enum lock_type     : bool { locked, unlocked };
-    enum protect_type  : int
+    using memory_protect_t = int;
+    enum  protect_type     : int
     {
         read    = PROT_READ ,
         write   = PROT_WRITE,
-        execute = PROT_EXEC
+        execute = PROT_EXEC ,
+        reserve = PROT_NONE
     };
 
     int operator| (const protect_type& lhs, const protect_type& rhs) { return (int)lhs | (int)rhs; }
     int operator| (const protect_type& lhs, const int& rhs)          { return (int)lhs | rhs;      }
 
+    enum lock_type     : bool { locked, unlocked };
     enum memory_state  : int
     {
         normal          ,
@@ -33,5 +34,4 @@ namespace memory  {
         medium   = 1024 * 1024 * 2,   // 2MB Size,
         large    = 1024 * 1024 * 1024 // 1GB Size.
     };
-}
 }
