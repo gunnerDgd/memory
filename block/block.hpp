@@ -5,10 +5,10 @@ namespace memory  {
     class block
     {
     public:
-        block(memory::memory& bl_mem, size_t bl_size, size_t bl_off = 0);
+        block(memory& bl_mem, size_t bl_size, size_t bl_off = 0);
         block() { }
 
-        void   view          (memory::memory& bl_mem, size_t bl_size, size_t bl_off = 0);
+        void   view          (memory& bl_mem, size_t bl_size, size_t bl_off = 0);
         void*  memory_pointer() { return block_pointer; }
         size_t memory_size   () { return block_size   ; }
 
@@ -19,7 +19,7 @@ namespace memory  {
 
 }
 
-memory::block::block(memory::memory& bl_mem, size_t bl_off, size_t bl_size)
+memory::block::block(memory& bl_mem, size_t bl_off, size_t bl_size)
 {
     if(v_mem.get_protection_state() == (int)protect_type::reserve)
         return *this; // Fail. You cannot view reserved memory.

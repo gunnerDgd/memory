@@ -16,12 +16,12 @@ namespace memory  {
               memory_protection(mem_protect)         {  }
         ~memory()                                    {  }
 
-        memory            (memory&  copy_memory);
-        memory            (memory&& move_memory);
-        memory& operator= (memory&  copy_memory);
+        memory                    (memory&  copy_memory);
+        memory                    (memory&& move_memory);
+        memory& operator=         (memory&  copy_memory);
 
-        void*  memory_pointer () { return  memory_address   ;      }
-        size_t memory_size    () { return  memory_block_size;      }
+        void*  memory_pointer     ()                { return  memory_address   ; }
+        size_t memory_size        ()                { return  memory_block_size; }
 
         memory_state     get_state()                { return memory_state_flag; }
         void             set_state(memory_state& s) { memory_state_flag = s   ; }

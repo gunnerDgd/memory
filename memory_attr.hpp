@@ -28,7 +28,7 @@ namespace memory  {
         unmapped
     };
 
-    enum vmem_allocate_type : uint64_t
+    enum vmem_allocate_type : uint64_t // For Huge Page Support.
     {
         standard = 4096,              // 4KB Size,
         medium   = 1024 * 1024 * 2,   // 2MB Size,

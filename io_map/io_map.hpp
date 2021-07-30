@@ -4,8 +4,7 @@
 #include <memory/memory_attr.hpp>
 
 namespace memory  {
-    
-    class io_map : public memory::memory
+    class io_map : public memory
     {
     public:
         io_map (device::file& io_file);
@@ -28,7 +27,7 @@ namespace memory  {
 memory::io_map::io_map(device::file& io_file)
     : memory     (nullptr, 0),
       iomap_file (io_file)   ,
-      iomap_state(memory::io_map_state::unmapped)   { }
+      iomap_state(io_map_state::unmapped)   { }
 
 void* memory::io_map::view(size_t v_size, size_t v_off, int v_prot, void*  v_addr)
 {
@@ -40,9 +39,9 @@ void* memory::io_map::view(size_t v_size, size_t v_off, int v_prot, void*  v_add
                              iomap_file.handle(), v_off);
 
     if(memory_address)
-        iomap_state       = memory::io_map_state::mapped;
+        iomap_state       = io_map_state::mapped;
     else
-        memory_state_flag = memory::memory_state::allocate_error;
+        memory_state_flag = memory_state::allocate_error;
 
     return memory_address;
 }
@@ -55,14 +54,14 @@ bool  memory::io_map::sync()
 
 bool  memory::io_map::unview()
 {
-    if(iomap_state == memory::io_map_state::unmapped)
+    if(iomap_state == io_map_state::unmapped)
         return true;
 
     int uv_res            = munmap(memory_address, memory_block_size);
     if (uv_res >= 0)
-        iomap_state       = memory::io_map_state::unmapped;
+        iomap_state       = io_map_state::unmapped;
     else
-        memory_state_flag = memory::memory_state::deallocate_error;
+        memory_state_flag = memory_state::deallocate_error;
 
     return (uv_res < 0) ? false: true;
 }
