@@ -24,7 +24,7 @@ namespace memory  {
         size_t memory_size        ()                { return  memory_block_size; }
 
         memory_state     get_state()                { return memory_state_flag; }
-        void             set_state(memory_state& s) { memory_state_flag = s   ; }
+        void             set_state(memory_state s)  { memory_state_flag = s   ; }
         memory_protect_t get_protection_state()     { return memory_protection; }
 
     protected:

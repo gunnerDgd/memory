@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory/vmem/vmem_reserve.hpp>
+#include <memory/vmem/vmem_define.hpp>
 #include <memory/memory_attr.hpp>
 
 #ifdef ENVIORMENT_UNIX
@@ -35,10 +36,7 @@ memory::vmem::vmem(memory_protect_t vm_protect, void* vm_addr)
                               MAP_PRIVATE | MAP_ANONYMOUS, -1, 0)    ;
     
     if(!memory_address)
-    {
-        VMEM_HANDLE_MMAP_FAILED(*this, "Lack Of Virtual Memory Space");
-        exit                   (2);
-    }
+        VMEM_HANDLE_MMAP_FAILED(this, "Lack Of Virtual Memory Space")
 }
 
 memory::vmem::vmem(vmem& copy_vmem)
@@ -47,7 +45,8 @@ memory::vmem::vmem(vmem& copy_vmem)
     memory_address    = mmap(nullptr, 4096, memory_protection, 
                              MAP_PRIVATE | MAP_ANONYMOUS     , -1, 0);
 
-    if(!memory_address) VMEM_HANDLE_MMAP_FAILED(*this, "Lack Of Virtual Memory Space");
+    if(!memory_address) 
+        VMEM_HANDLE_MMAP_FAILED(this, "Lack Of Virtual Memory Space");
 }
 
 memory::vmem::vmem(vmem&&    move_vmem)
@@ -67,5 +66,6 @@ memory::vmem::vmem(reserved& vm_reserved, memory_protect_t vm_protect)
     : memory      (std::move(vm_reserved))
 {
     int c_res     = mprotect(memory_address, 4096, vm_protect);
-    if (c_res != 0) VMEM_HANDLE_MPROTECT_FAILED(*this)        ;
+    if (c_res != 0) 
+        VMEM_HANDLE_MPROTECT_FAILED(this)
 }
