@@ -1,0 +1,7 @@
+#include <memory/memory.hpp>
+#include <memory/vmem/vmem_controller.hpp>
+
+namespace memory {
+
+    using page = memory<uint8_t[4096], vmem_controller>;
+}
