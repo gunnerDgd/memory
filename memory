@@ -1,7 +1,20 @@
 #include <memory/memory.hpp>
-#include <memory/vmem/vmem_controller.hpp>
+#include <cstdint>
+
+/*
+1) Memory Traits
+
+- Must Have "Accessor" to access 
+
+*/
 
 namespace memory {
 
-    using page = memory<uint8_t[4096], vmem_controller>;
+    using page = virtual_memory<uint8_t[4096], vmem_controller>;
+    
+    template <typename T>
+    using vmem            = virtual_memory<T, vmem_controller> ;
+    
+    template <typename T>
+    using reserved_memory = virtual_memory<T, rmem_controller>;
 }
