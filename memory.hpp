@@ -31,7 +31,13 @@ namespace memory {
                                                        std::remove_extent<memory_data_t>, 
                                                                           memory_data_t>::type*;
     public:
-        virtual_memory (typename memory_controller_t::memory_prot_t prot = vmem_mode::read | vmem_mode::write, void* adjoin = nullptr);
+        virtual_memory (typename memory_controller_t::memory_prot_t prot   = vmem_mode::read | vmem_mode::write, 
+                        void*                                       adjoin = nullptr);
+
+        virtual_memory (typename memory_controller_t::memory_fd_t   fd                                         ,
+                        typename memory_controller_t::memory_prot_t prot   = vmem_mode::read | vmem_mode::write,
+                        void*                                       adjoin = nullptr);
+        
         virtual_memory (virtual_memory<memory_data_t, rmem_controller>&, typename memory_controller_t::memory_prot_t);
         
         ~virtual_memory() { memory_controller_t::deallocate(sizeof(memory_data_t), memory_pointer); }
