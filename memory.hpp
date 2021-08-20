@@ -10,40 +10,32 @@ namespace memory {
     class virtual_memory
     {
     public:
-        using pointer_type = typename std::conditional<std::is_array_v     <memory_data_t>,
-                                                       std::remove_extent_t<memory_data_t>, 
-                                                                            memory_data_t>::type*;안개성의
+        using vm_size_t = typename memory_controller_t::memory_size_t  ;
+        using vm_res_t  = typename memory_controller_t::memory_result_t;
+        using vm_prot_t = typename memory_controller_t::memory_prot_t  ;
+        using vm_ptr_t  = std::add_pointer_t<std::conditional_t<std::is_array       <memory_data_t>,
+                                                                std::remove_extent_t<memory_data_t>,
+                                                                                     memory_data_t>;
         
-        using protect_type = typename memory_controller_t::memory_prot_t;
-        using fd_type      = typename memory_controller_t::memory_fd_t  ;
     public:
-        virtual_memory (protect_type prot = vmem_mode::read | vmem_mode::write, void* adjoin = nullptr, fd_type fd = memory_controller_t::memory_backed)
-        virtual_memory ();
-        ~virtual_memory();
+        template <typename... Args>
+        virtual_memory (Args... vm_args, void* vm_adjoin);
+        virtual_memory ()                               { }
+        
+        ~virtual_memory() { this->deallocate(); }
     
     public:
-        pointer_type allocate(protect_type p, void* a = nullptr, fd_type f = memory_controller_t::memory_backed);
-
-        pointer_type get_pointer() { return memory_pointer; }
+        vm_ptr_t get_pointer() { return memory_pointer; }
 
     protected:
-        pointer_type                              memory_pointer      ;
-        typename memory_controller_t::memory_fd_t memory_backup_object;
-        
+        vm_ptr_t     memory_pointer;
     };
 }
 
 template <typename memory_data_t, typename memory_controller_t>
-memory::virtual_memory<memory_data_t, memory_controller_t>::virtual_memory (typename memory_controller_t::memory_prot_t prot  ,
-                                                                            void*                                       adjoin,
-                                                                            typename memory_controller_t::memory_fd_t   fd)
-    : memory_pointer((pointer_type)memory_controller_t::allocate(prot, sizeof(memory_data_t), adjoin)) 
-{
+template <typename... Args>
+memory::virtual_memory<memory_data_t, memory_controller_t>::virtual_memory(Args... vm_args, void* vm_adjoin)
+    : memory_pointer((vm_ptr_t)memory_controller_t::allocate(sizeof(memory_data_t), 
+                                                             vm_adjoin            , 
+                                                             std::forward<Args>(vm_args)...)) { }
 
-}
-
-template <typename memory_data_t, typename memory_controller_t>
-memory::virtual_memory<memory_data_t, memory_controller_t>::~virtual_memory() 
-{ 
-    memory_controller_t::deallocate(sizeof(memory_data_t), memory_pointer); 
-}

@@ -24,20 +24,20 @@ namespace memory {
         using memory_size_t   = size_t;
         using memory_prot_t   = int   ;
         using memory_result_t = int   ;
-        
-        using            memory_fd_t               = int;
-        static constexpr memory_fd_t memory_backed = -1 ;
 
     public:
-        static void*           allocate  (memory_size_t, void*, memory_prot_t, memory_fd_t);
-        static memory_result_t deallocate(memory_size_t, void*);
+        static void*           allocate  (memory_size_t, void*, memory_prot_t);
+        static memory_result_t deallocate(memory_size_t, void*)               ;
         static memory_result_t control   (memory_size_t, void*, memory_prot_t);
+
+        static memory_result_t lock      (memory_size_t, void*);
+        static memory_result_t unlock    (memory_size_t, void*);
     };
 }
 
-void* memory::vmem_controller::allocate  (memory_size_t size, void* adjoin, memory_prot_t prot, memory_fd_t fd)
+void* memory::vmem_controller::allocate  (memory_size_t size, void* adjoin, memory_prot_t prot)
 {
-    return mmap  (adjoin, size, prot, MAP_PRIVATE | MAP_ANONYMOUS, fd, 0);
+    return mmap  (adjoin, size, prot, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
 }
 
 typename memory::vmem_controller::memory_result_t memory::vmem_controller::deallocate(memory_size_t size, void* addr)
