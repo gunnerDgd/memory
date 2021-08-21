@@ -29,6 +29,7 @@ Accessor Class
         using accessor_handle = typename access_type::access_handle_t ;
         using accessor_size   = typename access_type::access_size_t   ;
         using accessor_off    = typename access_type::access_off_t    ;
+        using accessor_block  = T;
 
     public:
         accessor(accessor_handle h, accessor_size s)
@@ -47,8 +48,12 @@ Accessor Class
         void        operator= (T&& v) {        access_query::query_set_value(v, ac_handle); }
 
     public:
-        void        start_point()     { access_query::query_decrease(ac_handle, ac_pointer) ; }
-        void        end_point  ()     { access_query::query_increase(ac_handle, ac_size - 1); }
+        void          start_point  () { ac_pointer = 0;           access_query::query_decrease(ac_handle, ac_pointer) ; }
+        void          end_point    () { ac_pointer = ac_size - 1; access_query::query_increase(ac_handle, ac_size - 1); }
+        accessor_size current_point() { return ac_pointer; }
+
+    public:
+        bool          is_end       () { return (ac_pointer == ac_size); }
 
     protected:
         accessor_handle ac_handle;
@@ -64,7 +69,7 @@ typename memory::accessor<T, access_type, access_query>::accessor_t& memory::acc
     else 
     {
         ac_pointer++; 
-        access_query::query_increase(ac_handle, 1); 
+        access_query::query_increase(ac_handle, 1);
     }
     
     return *this; 
