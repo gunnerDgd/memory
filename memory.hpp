@@ -1,13 +1,13 @@
+#pragma once
+#include <tuple>
 #include <type_traits>
-#include <memory/vmem/vmem_controller.hpp>
-#include <memory/accessor/accessor_forward.hpp>
 
 namespace memory {
 
     template <typename memory_data_t, typename memory_controller_t>
     class virtual_memory;
 
-    template <typename memory_data_t, typename memory_controller_t = vmem_controller>
+    template <typename memory_data_t, typename memory_controller_t>
     class virtual_memory
     {
     public:
@@ -19,7 +19,6 @@ namespace memory {
                                                  std::remove_extent_t<memory_data_t>,
                                                                       memory_data_t>;
         using vm_ptr_t      = std::add_pointer_t<vm_block_t>;
-        using vm_accessor_t = vmem_accessor<vm_block_t>;
         
     public:
         template <typename... Args>
@@ -29,8 +28,7 @@ namespace memory {
         ~virtual_memory();
     
     public:
-        vm_ptr_t      get_pointer () { return                                       memory_pointer; }
-        vm_accessor_t get_accessor() { return vm_accessor_t(memory_pointer, sizeof(memory_data_t)); }
+        vm_ptr_t      get_pointer () { return memory_pointer; }
 
     protected:
         vm_ptr_t     memory_pointer;

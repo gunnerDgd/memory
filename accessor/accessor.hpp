@@ -1,5 +1,4 @@
 #include <iostream>
-
 namespace memory {
 
     template <typename T, typename access_type, typename access_query>
@@ -43,8 +42,13 @@ Accessor Class
         accessor_t& operator--(int);
 
     public:
-        T         operator* ()     { return access_query::query_get_value   (ac_handle); }
-        void      operator= (T& v) {        access_query::query_set_value(v, ac_handle); }
+        T           operator* ()      { return access_query::query_get_value   (ac_handle); }
+        void        operator= (T&  v) {        access_query::query_set_value(v, ac_handle); }
+        void        operator= (T&& v) {        access_query::query_set_value(v, ac_handle); }
+
+    public:
+        void        start_point()     { access_query::query_decrease(ac_handle, ac_pointer) ; }
+        void        end_point  ()     { access_query::query_increase(ac_handle, ac_size - 1); }
 
     protected:
         accessor_handle ac_handle;
@@ -88,7 +92,7 @@ typename memory::accessor<T, access_type, access_query>::accessor_t& memory::acc
     else
     {
         ac_pointer--;
-        access_query::query_increase(ac_handle, 1); 
+        access_query::query_decrease(ac_handle, 1); 
     }
 
     return *this; 
@@ -102,7 +106,7 @@ typename memory::accessor<T, access_type, access_query>::accessor_t& memory::acc
     else
     {
         ac_pointer--; 
-        access_query::query_increase(ac_handle, 1); 
+        access_query::query_decrease(ac_handle, 1); 
     }
     
     return *this; 

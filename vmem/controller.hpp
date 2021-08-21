@@ -6,7 +6,7 @@
 
 namespace memory {
 
-    enum  vmem_mode : int
+    enum class vmem_mode : int
     {
         read    = PROT_READ ,
         write   = PROT_WRITE,
@@ -48,4 +48,14 @@ typename memory::vmem_controller::memory_result_t memory::vmem_controller::deall
 typename memory::vmem_controller::memory_result_t memory::vmem_controller::control(memory_size_t size, void* addr, memory_prot_t prot)
 {
     return mprotect(addr, size, prot);
+}
+
+typename memory::vmem_controller::memory_result_t memory::vmem_controller::lock      (memory_size_t size, void* addr)
+{
+    return mlock(addr, size);
+}
+
+typename memory::vmem_controller::memory_result_t memory::vmem_controller::unlock    (memory_size_t size, void* addr)
+{
+    return munlock(addr, size);
 }

@@ -1,13 +1,22 @@
-#include <memory/memory.hpp>
+#include <memory/memory_concepts.hpp>
+#include <memory/accessor/accessor_forward.hpp>
+
+#include <memory/file_map/controller.hpp>
+#include <memory/vmem/controller.hpp>
+
 #include <cstdint>
 
-/*
-1) Memory Traits
-
-- Must Have "Accessor" to access 
-
-*/
-
 namespace memory {
-    using page = virtual_memory<uint8_t[4096], vmem_controller>;
+
+    template <typename MemoryType>
+    concept bool pointer_accessible = requires(MemoryType m) { m.get_pointer(); };
+
+    using page     = virtual_memory<uint8_t[4096], vmem_controller>;
+    
+    template <typename T>
+    using memory   = virtual_memory<T, vmem_controller>;
+
+    template <typename T>
+    using file_map = virtual_memory<T, file_map_controller>;
+
 }
