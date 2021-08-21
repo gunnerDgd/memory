@@ -6,7 +6,7 @@
 
 namespace memory {
 
-    enum class vmem_mode : int
+    enum class memory_mode : int
     {
         read    = PROT_READ ,
         write   = PROT_WRITE,
@@ -14,9 +14,9 @@ namespace memory {
         reserve = PROT_NONE
     };
 
-    int operator| (vmem_mode l, vmem_mode r) { return (int)l | (int)r; }
-    int operator& (vmem_mode l, vmem_mode r) { return (int)l & (int)r; }
-    int operator^ (vmem_mode l, vmem_mode r) { return (int)l ^ (int)r; }
+    int operator| (memory_mode l, memory_mode r) { return (int)l | (int)r; }
+    int operator& (memory_mode l, memory_mode r) { return (int)l & (int)r; }
+    int operator^ (memory_mode l, memory_mode r) { return (int)l ^ (int)r; }
 
     class vmem_controller
     {
@@ -26,7 +26,7 @@ namespace memory {
         using memory_result_t = int   ;
 
     public:
-        static void*           allocate  (memory_size_t, void*, memory_prot_t);
+        static void*           allocate  (memory_size_t, void* adjoin = nullptr, memory_prot_t prot = memory_mode::read | memory_mode::write);
         static memory_result_t deallocate(memory_size_t, void*)               ;
         static memory_result_t control   (memory_size_t, void*, memory_prot_t);
 
