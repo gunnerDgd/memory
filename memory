@@ -9,12 +9,5 @@
 */
 
 namespace memory {
-
     using page = virtual_memory<uint8_t[4096], vmem_controller>;
-    
-    template <typename T>
-    using vmem            = virtual_memory<T, vmem_controller> ;
-    
-    template <typename T>
-    using reserved_memory = virtual_memory<T, rmem_controller>;
 }
