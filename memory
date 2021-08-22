@@ -1,16 +1,10 @@
 #include <memory/memory_concepts.hpp>
-#include <memory/accessor/accessor_utility.hpp>
-#include <memory/accessor/accessor_forward.hpp>
-
 #include <memory/file_map/controller.hpp>
-#include <memory/vmem/controller.hpp>
+#include <memory/virtual_memory/controller.hpp>
 
 #include <cstdint>
 
 namespace memory {
-
-    template <typename MemoryType>
-    concept bool pointer_accessible = requires(MemoryType m) { m.get_pointer(); };
 
     using page     = virtual_memory<uint8_t[4096], vmem_controller>;
     
