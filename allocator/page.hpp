@@ -6,8 +6,12 @@ namespace allocator {
     class page
     {
     public:
-        static void* allocate  (uint64_t size, void* adjoin = nullptr) { return ::memory::vmem_controller::allocate  (size, adjoin); }
-        static void  deallocate(void* addr, uint64_t size)             {        ::memory::vmem_controller::deallocate(size, addr)  ; }
+        using size_type    = uint64_t;
+        using locator_type = void*
+
+    public:
+        static void* allocate  (size_type   size , locator_type adjoin = nullptr) { return ::memory::vmem_controller::allocate  (size, adjoin); }
+        static void  deallocate(locator_type addr, size_type    size)             {        ::memory::vmem_controller::deallocate(size, addr)  ; }
     };
 
 }
