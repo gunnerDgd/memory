@@ -7,7 +7,7 @@ namespace allocator {
     {
     public:
         using size_type    = uint64_t;
-        using locator_type = void*
+        using locator_type = void*;
 
     public:
         static void* allocate  (size_type   size , locator_type adjoin = nullptr) { return ::memory::vmem_controller::allocate  (size, adjoin); }
