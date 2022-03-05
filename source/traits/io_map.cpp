@@ -35,7 +35,11 @@ bool memory::io_map::delete_memory(handle& del_handle)
 	::UnmapViewOfFile(del_handle.__M_iomap_pointer)   ;
 	::CloseHandle	 (del_handle.__M_iomap_map_handle);
 	::CloseHandle	 (del_handle.__M_iomap_io_handle) ;
+
+	return true;
 }
+
+memory::io_map::handle::handle() {  }
 
 memory::io_map::handle::handle(handle& copy) : __M_iomap_io_handle (copy.__M_iomap_io_handle) ,
 											   __M_iomap_map_handle(copy.__M_iomap_map_handle),

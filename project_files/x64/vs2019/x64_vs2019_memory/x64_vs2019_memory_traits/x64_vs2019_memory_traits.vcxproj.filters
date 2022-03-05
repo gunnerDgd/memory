@@ -18,9 +18,15 @@
     <ClInclude Include="..\..\..\..\..\include\memory\traits\virtual_memory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\memory\traits\io_map.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\source\traits\virtual_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\source\traits\io_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

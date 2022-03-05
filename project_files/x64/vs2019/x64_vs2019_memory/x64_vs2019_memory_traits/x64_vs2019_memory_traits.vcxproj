@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\include\memory\traits\io_map.hpp" />
     <ClInclude Include="..\..\..\..\..\include\memory\traits\virtual_memory.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\source\traits\io_map.cpp" />
     <ClCompile Include="..\..\..\..\..\source\traits\virtual_memory.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

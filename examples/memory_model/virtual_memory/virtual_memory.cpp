@@ -4,10 +4,9 @@
 int main()
 {
 	memory::model::virtual_memory vmem (256);
-	memory::model::io_map		  iomap("test.txt");
 
-	auto read  = vmem | memory::access::read_only <int>{};
-	auto write = vmem | memory::access::write_only<int>{};
+	auto read  = vmem | (memory::access::read_only <int>{} | memory::access::region<0, 100>{});
+	auto write = vmem | (memory::access::write_only<int>{} | memory::access::region<0, 100>{});
 
 	write = 5;
 	std::cout << *read << std::endl;

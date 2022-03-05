@@ -25,10 +25,10 @@ namespace memory {
 		~basic_memory_model ();
 
 	public:
-		template <typename AccessType>
-		auto operator|(access::read_only <AccessType>);
-		template <typename AccessType>
-		auto operator|(access::write_only<AccessType>);
+		template <typename AccessType, typename Region>
+		auto operator|(access::read_only <AccessType, Region>);
+		template <typename AccessType, typename Region>
+		auto operator|(access::write_only<AccessType, Region>);
 
 	private:
 		handle __M_mmodel_handle;
@@ -36,17 +36,17 @@ namespace memory {
 }
 
 template <typename MemoryTraits, typename MemoryAccess>
-template <typename AccessType>
-auto memory::basic_memory_model<MemoryTraits, MemoryAccess>::operator|(access::read_only<AccessType>)
+template <typename AccessType, typename Region>
+auto memory::basic_memory_model<MemoryTraits, MemoryAccess>::operator|(access::read_only<AccessType, Region>)
 {
-	return access_traits::create_access(access::read_only<AccessType>{}, __M_mmodel_handle);
+	return access_traits::create_access(access::read_only<AccessType, Region>{}, __M_mmodel_handle);
 }
 
 template <typename MemoryTraits, typename MemoryAccess>
-template <typename AccessType>
-auto memory::basic_memory_model<MemoryTraits, MemoryAccess>::operator|(access::write_only<AccessType>)
+template <typename AccessType, typename Region>
+auto memory::basic_memory_model<MemoryTraits, MemoryAccess>::operator|(access::write_only<AccessType, Region>)
 {
-	return access_traits::create_access(access::write_only<AccessType>{}, __M_mmodel_handle);
+	return access_traits::create_access(access::write_only<AccessType, Region>{}, __M_mmodel_handle);
 }
 
 template <typename MemoryTraits, typename MemoryAccess>

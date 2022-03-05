@@ -2,6 +2,8 @@
 #include <Windows.h>
 #include <string>
 
+#include <memory/access/forward.hpp>
+
 namespace memory {
 	class io_map
 	{
@@ -18,6 +20,7 @@ namespace memory {
 	class io_map::handle
 	{
 		friend class io_map;
+		friend class memory::access::io_map;
 
 		using native_handle_type = HANDLE;
 		using size_type			 = std::size_t  ;

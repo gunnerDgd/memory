@@ -1,2 +1,4 @@
-﻿  virtual_memory.cpp
+﻿  io_map.cpp
+C:\Users\gunnerD\Projects\memory\source\traits\io_map.cpp(11,148): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+C:\Users\gunnerD\Projects\memory\source\traits\io_map.cpp(26,148): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
   x64_vs2019_memory_traits.vcxproj -> C:\Users\gunnerD\Projects\memory\libs\x64\windows\x64_memory_traits.lib
