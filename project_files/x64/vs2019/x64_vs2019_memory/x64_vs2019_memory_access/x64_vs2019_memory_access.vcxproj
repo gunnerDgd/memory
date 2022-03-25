@@ -19,41 +19,44 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\include\memory\access\forward.hpp" />
-    <ClInclude Include="..\..\..\..\..\include\memory\access\io_map.hpp" />
-    <ClInclude Include="..\..\..\..\..\include\memory\access\virtual_memory.hpp" />
+    <ClInclude Include="..\..\..\..\..\include\memory\access\io_map\accessor.hpp" />
+    <ClInclude Include="..\..\..\..\..\include\memory\access\io_map\read_only.hpp" />
+    <ClInclude Include="..\..\..\..\..\include\memory\access\io_map\write_only.hpp" />
+    <ClInclude Include="..\..\..\..\..\include\memory\access\virtual_memory\accessor.hpp" />
+    <ClInclude Include="..\..\..\..\..\include\memory\access\virtual_memory\read_only.hpp" />
+    <ClInclude Include="..\..\..\..\..\include\memory\access\virtual_memory\write_only.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{da54419a-0c1a-4f2b-b3b4-e16293345e7d}</ProjectGuid>
-    <RootNamespace>x64vs2019memoryaccesstraits</RootNamespace>
+    <ProjectGuid>{d8a73037-6167-498b-bd7f-b261ac734c4c}</ProjectGuid>
+    <RootNamespace>x64vs2019memoryaccess</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -83,7 +86,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\gunnerD\Projects\memory\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\MinusOne\Projects\memory\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

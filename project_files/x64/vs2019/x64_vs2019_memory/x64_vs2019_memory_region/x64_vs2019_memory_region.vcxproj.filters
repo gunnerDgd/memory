@@ -15,13 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\include\memory\access\virtual_memory.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\include\memory\access\forward.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\include\memory\access\io_map.hpp">
+    <ClInclude Include="..\..\..\..\..\include\memory\region\region.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

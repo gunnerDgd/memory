@@ -1,2 +1,2 @@
-PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.29.30133:VCServicingVersionATL=14.29.30136:VCServicingVersionCrtHeaders=14.29.30136:TargetPlatformVersion=10.0.22000.0:
-Debug|x64|C:\Users\gunnerD\Projects\memory\project_files\x64\vs2019\x64_vs2019_memory\|
+PlatformToolSet=v143:VCToolArchitecture=Native64Bit:VCToolsVersion=14.31.31103:TargetPlatformVersion=10.0.19041.0:
+Debug|x64|C:\Users\MinusOne\Projects\memory\project_files\x64\vs2019\x64_vs2019_memory\|

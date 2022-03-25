@@ -1,2 +1,2 @@
 ﻿  io_map.cpp
-  x64_vs2019_mmodel_iomap_test.vcxproj -> C:\Users\gunnerD\Projects\memory\project_files\x64\vs2019\x64_vs2019_memory\x64\Debug\x64_vs2019_mmodel_iomap_test.exe
+C:\Users\MinusOne\Projects\memory\examples\memory_model\io_map\io_map.cpp(1,10): fatal error C1083: Cannot open include file: 'memory/memory_model.hpp': No such file or directory

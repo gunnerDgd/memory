@@ -13,14 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\include\memory\traits\virtual_memory.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\include\memory\traits\io_map.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <Filter Include="Header Files\io_map">
+      <UniqueIdentifier>{20fb6553-038d-4a07-a600-e3ad019e96f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\virtual_memory">
+      <UniqueIdentifier>{8fa00ef6-32bd-4954-80fe-dfc093fecbf1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\source\traits\virtual_memory.cpp">
@@ -29,5 +27,16 @@
     <ClCompile Include="..\..\..\..\..\source\traits\io_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\include\memory\io_map\io_map.hpp">
+      <Filter>Header Files\io_map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\memory\virtual_memory\virtual_memory.hpp">
+      <Filter>Header Files\virtual_memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\memory\virtual_memory\virtual_memory_access.hpp">
+      <Filter>Header Files\virtual_memory</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
