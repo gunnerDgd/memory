@@ -27,6 +27,9 @@
     <ClCompile Include="..\..\..\..\..\source\traits\io_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\source\traits\io_map_viewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\include\memory\io_map\io_map.hpp">
@@ -37,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\include\memory\virtual_memory\virtual_memory_access.hpp">
       <Filter>Header Files\virtual_memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\memory\io_map\viewer.hpp">
+      <Filter>Header Files\io_map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

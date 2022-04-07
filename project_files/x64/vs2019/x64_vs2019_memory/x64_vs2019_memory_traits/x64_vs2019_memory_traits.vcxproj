@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\source\traits\io_map.cpp" />
+    <ClCompile Include="..\..\..\..\..\source\traits\io_map_viewer.cpp" />
     <ClCompile Include="..\..\..\..\..\source\traits\virtual_memory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\include\memory\io_map\io_map.hpp" />
+    <ClInclude Include="..\..\..\..\..\include\memory\io_map\viewer.hpp" />
     <ClInclude Include="..\..\..\..\..\include\memory\virtual_memory\virtual_memory.hpp" />
     <ClInclude Include="..\..\..\..\..\include\memory\virtual_memory\virtual_memory_access.hpp" />
   </ItemGroup>

@@ -1,6 +1,2 @@
-﻿  io_map.cpp
-C:\Users\MinusOne\Projects\memory\source\traits\io_map.cpp(9,116): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
-C:\Users\MinusOne\Projects\memory\source\traits\io_map.cpp(19,116): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
-C:\Users\MinusOne\Projects\memory\source\traits\io_map.cpp(32,43): warning C4293: '<<': shift count negative or too big, undefined behavior
-C:\Users\MinusOne\Projects\memory\source\traits\io_map.cpp(46,43): warning C4293: '<<': shift count negative or too big, undefined behavior
+﻿  virtual_memory.cpp
   x64_vs2019_memory_traits.vcxproj -> C:\Users\MinusOne\Projects\memory\libs\x64\windows\x64_memory_traits.lib

@@ -8,6 +8,7 @@ namespace memory {
 	class virtual_memory
 	{
 		friend class     virtual_memory;
+	public:
 		using		     pointer_type				  = std::uint8_t*;
 		static constexpr pointer_type invalid_pointer = nullptr;	
 
@@ -19,12 +20,13 @@ namespace memory {
 		virtual_memory (AccessMode, size_type);
 		~virtual_memory();
 
-		virtual_memory(virtual_memory&);
-		virtual_memory(virtual_memory&&);
+		virtual_memory(const virtual_memory&);
+		virtual_memory(const virtual_memory&&);
 
 	public:
 		pointer_type address();
 		size_type    size   ();
+
 	private:
 		pointer_type	__M_hnd_pointer ;
 		size_type       __M_hnd_size    ;
@@ -33,6 +35,9 @@ namespace memory {
 }
 
 template <typename AccessMode>
-memory::virtual_memory::virtual_memory(AccessMode, size_type alloc_size) : __M_hnd_size	   (alloc_size),
-																		   __M_hnd_refcount(0)		   ,
-																		   __M_hnd_pointer (::VirtualAlloc(nullptr, __M_hnd_size, MEM_COMMIT, AccessMode::value)) {  }
+memory::virtual_memory::virtual_memory(AccessMode, size_type alloc_size) 
+	: __M_hnd_size	   (alloc_size),
+	  __M_hnd_refcount(0)		   
+{
+	__M_hnd_pointer = (pointer_type)::VirtualAlloc(nullptr, __M_hnd_size, MEM_COMMIT, AccessMode::value);
+}

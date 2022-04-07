@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\include\memory\region\region.hpp" />
+    <ClInclude Include="..\..\..\..\..\include\memory\region\access_pointer.hpp" />
+    <ClInclude Include="..\..\..\..\..\include\memory\region\read_only.hpp" />
+    <ClInclude Include="..\..\..\..\..\include\memory\region\write_only.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

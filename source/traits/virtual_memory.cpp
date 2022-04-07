@@ -8,18 +8,13 @@ memory::virtual_memory::~virtual_memory()
 	::VirtualFree(__M_hnd_pointer, 0, MEM_RELEASE);
 }
 
-memory::virtual_memory::virtual_memory(virtual_memory&  copy) : __M_hnd_pointer (copy.__M_hnd_pointer),
-																__M_hnd_refcount(copy.__M_hnd_refcount.load()),
-																__M_hnd_size	(copy.__M_hnd_size)			  {  }
+memory::virtual_memory::virtual_memory(const virtual_memory&  copy) : __M_hnd_pointer (copy.__M_hnd_pointer)		,
+																	  __M_hnd_refcount(copy.__M_hnd_refcount.load()),
+																	  __M_hnd_size	  (copy.__M_hnd_size)	        {  }
 
-memory::virtual_memory::virtual_memory(virtual_memory&& move) : __M_hnd_pointer (move.__M_hnd_pointer),
-																__M_hnd_refcount(move.__M_hnd_refcount.load()),
-																__M_hnd_size	(move.__M_hnd_size)			  
-{
-	__M_hnd_pointer  = invalid_pointer;
-	__M_hnd_size     = 0;
-	__M_hnd_refcount = 0;
-}
+memory::virtual_memory::virtual_memory(const virtual_memory&& move) : __M_hnd_pointer (move.__M_hnd_pointer)		,
+																	  __M_hnd_refcount(move.__M_hnd_refcount.load()),
+																	  __M_hnd_size	  (move.__M_hnd_size)			{  }
 
 typename memory::virtual_memory::pointer_type memory::virtual_memory::address()
 {

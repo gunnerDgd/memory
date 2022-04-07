@@ -1,16 +1,16 @@
-#include <memory/memory_model.hpp>
-#include <memory/access/virtual_memory/read_only.hpp>
-#include <memory/access/virtual_memory/write_only.hpp>
+#include <memory/virtual_memory/virtual_memory.hpp>
+#include <memory/region/read_only.hpp>
+#include <memory/region/write_only.hpp>
 
 #include <iostream>
 
 int main()
 {
-	memory::model::virtual_memory vmem (256);
+	memory::virtual_memory vmem(memory::access::virtual_memory::all, 256);
 
-	auto read  = vmem | memory::read_only <int, 0, 256>();
-	auto write = vmem | memory::write_only<int, 0, 256>();
+	auto read  = vmem | memory::region::read_only <int, 0, 1>;
+	auto write = vmem | memory::region::write_only<int, 0, 1>;
 
-	write = 5;
+	write = 15;
 	std::cout << *read << std::endl;
 }

@@ -15,7 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\include\memory\region\region.hpp">
+    <ClInclude Include="..\..\..\..\..\include\memory\region\read_only.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\memory\region\write_only.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\memory\region\access_pointer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
