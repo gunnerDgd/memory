@@ -1,0 +1,8 @@
+﻿  memory_pooling_dynamic_alloc.c
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\details\memory_pooling_dynamic_alloc.c(8,55): warning C4133: 'return': incompatible types - from 'PSLIST_ENTRY' to '__synapse_memory_pooling_dynamic_chunk *'
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\details\memory_pooling_dynamic_alloc.c(16,38): warning C4133: 'function': incompatible types - from '__synapse_memory_pooling_dynamic_chunk *' to 'PSLIST_ENTRY'
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\details\memory_pooling_dynamic_alloc.c(32,42): warning C4133: 'function': incompatible types - from '__synapse_memory_pooling_dynamic_chunk *' to 'PSLIST_ENTRY'
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\details\memory_pooling_dynamic_alloc.c(46,76): warning C4133: '=': incompatible types - from 'PSLIST_ENTRY' to '__synapse_memory_pooling_dynamic_chunk *'
+  dynamic_pool_init.c
+  Generating Code...
+  synapse-memory-pooling-dynamic.vcxproj -> E:\Programming\C++\Projects\Experimental\synapse-memory\libs\x64\debug\synapse-memory-pooling-dynamic.lib

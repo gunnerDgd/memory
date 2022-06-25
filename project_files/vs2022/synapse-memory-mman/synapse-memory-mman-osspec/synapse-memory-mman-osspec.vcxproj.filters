@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\os_specific">
+      <UniqueIdentifier>{0d615efa-41b8-49e5-ad7b-c4bf810e5b5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os_specific">
+      <UniqueIdentifier>{5f95a9b5-268d-4548-81a7-35db8a56632e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\os_specific\winheap">
+      <UniqueIdentifier>{e2a9520e-cd60-4a5a-bf3b-704dc6b5528a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\os_specific\winheap\details">
+      <UniqueIdentifier>{3ff409c4-68c2-4fec-8ba2-007cef9589c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os_specific\winheap">
+      <UniqueIdentifier>{0095b9c6-e8c4-496a-b9ca-b1cc48aaf4e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os_specific\winheap\details">
+      <UniqueIdentifier>{96644df6-10a6-4b61-beb6-bf59c27e1ae1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\details\memory_mman_winheap_type.h">
+      <Filter>Header Files\os_specific\winheap\details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\details\memory_mman_winheap_init.h">
+      <Filter>Header Files\os_specific\winheap\details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\details\memory_mman_winheap_alloc.h">
+      <Filter>Header Files\os_specific\winheap\details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\winheap_type.h">
+      <Filter>Header Files\os_specific\winheap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\winheap_alloc.h">
+      <Filter>Header Files\os_specific\winheap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\winheap_init.h">
+      <Filter>Header Files\os_specific\winheap</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\source\c\mman\os_specific\winheap\details\memory_mman_winheap_alloc.c">
+      <Filter>Source Files\os_specific\winheap\details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\c\mman\os_specific\winheap\details\memory_mman_winheap_init.c">
+      <Filter>Source Files\os_specific\winheap\details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\c\mman\os_specific\winheap\winheap_init.c">
+      <Filter>Source Files\os_specific\winheap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\c\mman\os_specific\winheap\winheap_alloc.c">
+      <Filter>Source Files\os_specific\winheap</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

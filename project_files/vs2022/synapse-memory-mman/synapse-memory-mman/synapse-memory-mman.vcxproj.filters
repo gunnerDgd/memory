@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\standard_heap">
+      <UniqueIdentifier>{f41f2fd6-c14a-4cf1-a54e-ccbfe463cfb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\standard_heap\details">
+      <UniqueIdentifier>{1be3c76b-9c0a-4968-bc3d-d14c9b5a4717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\standard_heap">
+      <UniqueIdentifier>{549c4ad2-f8c0-4349-93ae-5729f4262f7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\standard_heap\details">
+      <UniqueIdentifier>{fa00ebfe-6dc2-4ebb-9b83-4e71866e42fb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\details\memory_mman_stdheap_type.h">
+      <Filter>Header Files\standard_heap\details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\details\memory_mman_stdheap_alloc.h">
+      <Filter>Header Files\standard_heap\details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\details\memory_mman_stdheap_init.h">
+      <Filter>Header Files\standard_heap\details</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\source\c\mman\standard_heap\details\memory_mman_stdheap_alloc.c">
+      <Filter>Source Files\standard_heap\details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\c\mman\standard_heap\details\memory_mman_stdheap_init.c">
+      <Filter>Source Files\standard_heap\details</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
