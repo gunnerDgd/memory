@@ -39,6 +39,9 @@
     <ClInclude Include="..\..\..\..\include\memory\pooling\dynamic\dynamic_pool_alloc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\pooling\dynamic\dynamic_pool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\c\pooling\dynamic\details\memory_pooling_dynamic_init.c">

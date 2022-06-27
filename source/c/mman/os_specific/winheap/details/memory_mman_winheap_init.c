@@ -13,6 +13,8 @@ __synapse_memory_mman_winheap_initialize
 		= pInitSize;
 	ptr_wheap->sz_wheap_max
 		= pMaxSize;
+
+	return ptr_wheap;
 }
 
 void

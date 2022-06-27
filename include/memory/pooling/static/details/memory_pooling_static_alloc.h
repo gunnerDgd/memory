@@ -5,6 +5,6 @@ __synapse_memory_pooling_static_chunk*
 __synapse_memory_pooling_static_allocate
 	(__synapse_memory_pooling_static*);
 
-void*
+void
 __synapse_memory_pooling_static_deallocate
 	(__synapse_memory_pooling_static*, __synapse_memory_pooling_static_chunk*);

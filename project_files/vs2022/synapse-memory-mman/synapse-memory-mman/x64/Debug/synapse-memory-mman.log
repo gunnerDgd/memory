@@ -1,0 +1,6 @@
+﻿  memory_mman_stdheap_alloc.c
+  memory_mman_stdheap_init.c
+  stdheap_alloc.c
+  stdheap_init.c
+  Generating Code...
+  synapse-memory-mman.vcxproj -> E:\Programming\C++\Projects\Experimental\synapse-memory\libs\x64\debug\synapse-memory-mman.lib

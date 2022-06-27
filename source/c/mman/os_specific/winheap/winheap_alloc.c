@@ -14,7 +14,6 @@ void
 synapse_memory_mman_winheap_deallocate
 	(synapse_memory_mman_winheap pHeap, void* pHint, size_t pSize)
 {
-	return
-		__synapse_memory_mman_winheap_deallocate
-			(synapse_memory_opaque_reference(pHeap), pHint);
+	__synapse_memory_mman_winheap_deallocate
+		(synapse_memory_opaque_reference(pHeap), pHint);
 }

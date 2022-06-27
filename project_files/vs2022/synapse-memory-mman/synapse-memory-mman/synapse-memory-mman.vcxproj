@@ -22,10 +22,16 @@
     <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\details\memory_mman_stdheap_alloc.h" />
     <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\details\memory_mman_stdheap_init.h" />
     <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\details\memory_mman_stdheap_type.h" />
+    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\stdheap.h" />
+    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\stdheap_alloc.h" />
+    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\stdheap_init.h" />
+    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\stdheap_type.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\c\mman\standard_heap\details\memory_mman_stdheap_alloc.c" />
     <ClCompile Include="..\..\..\..\source\c\mman\standard_heap\details\memory_mman_stdheap_init.c" />
+    <ClCompile Include="..\..\..\..\source\c\mman\standard_heap\stdheap_alloc.c" />
+    <ClCompile Include="..\..\..\..\source\c\mman\standard_heap\stdheap_init.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -81,6 +87,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>E:\Programming\C++\Projects\Experimental\synapse-memory\include;$(IncludePath)</IncludePath>
+    <OutDir>E:\Programming\C++\Projects\Experimental\synapse-memory\libs\x64\debug\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -122,7 +129,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>

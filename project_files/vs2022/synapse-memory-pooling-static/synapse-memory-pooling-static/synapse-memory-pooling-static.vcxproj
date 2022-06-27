@@ -22,6 +22,7 @@
     <ClInclude Include="..\..\..\..\include\memory\pooling\static\details\memory_pooling_static_alloc.h" />
     <ClInclude Include="..\..\..\..\include\memory\pooling\static\details\memory_pooling_static_init.h" />
     <ClInclude Include="..\..\..\..\include\memory\pooling\static\details\memory_pooling_static_type.h" />
+    <ClInclude Include="..\..\..\..\include\memory\pooling\static\static_pool.h" />
     <ClInclude Include="..\..\..\..\include\memory\pooling\static\static_pool_alloc.h" />
     <ClInclude Include="..\..\..\..\include\memory\pooling\static\static_pool_init.h" />
     <ClInclude Include="..\..\..\..\include\memory\pooling\static\static_pool_type.h" />

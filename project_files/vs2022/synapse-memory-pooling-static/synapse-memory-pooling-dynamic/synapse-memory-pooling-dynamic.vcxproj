@@ -22,6 +22,7 @@
     <ClInclude Include="..\..\..\..\include\memory\pooling\dynamic\details\memory_pooling_dynamic_alloc.h" />
     <ClInclude Include="..\..\..\..\include\memory\pooling\dynamic\details\memory_pooling_dynamic_init.h" />
     <ClInclude Include="..\..\..\..\include\memory\pooling\dynamic\details\memory_pooling_dynamic_type.h" />
+    <ClInclude Include="..\..\..\..\include\memory\pooling\dynamic\dynamic_pool.h" />
     <ClInclude Include="..\..\..\..\include\memory\pooling\dynamic\dynamic_pool_alloc.h" />
     <ClInclude Include="..\..\..\..\include\memory\pooling\dynamic\dynamic_pool_init.h" />
     <ClInclude Include="..\..\..\..\include\memory\pooling\dynamic\dynamic_pool_type.h" />

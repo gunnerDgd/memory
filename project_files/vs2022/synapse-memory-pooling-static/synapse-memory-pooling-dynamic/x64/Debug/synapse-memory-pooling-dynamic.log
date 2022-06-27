@@ -3,6 +3,13 @@ E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic
 E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\details\memory_pooling_dynamic_alloc.c(16,38): warning C4133: 'function': incompatible types - from '__synapse_memory_pooling_dynamic_chunk *' to 'PSLIST_ENTRY'
 E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\details\memory_pooling_dynamic_alloc.c(32,42): warning C4133: 'function': incompatible types - from '__synapse_memory_pooling_dynamic_chunk *' to 'PSLIST_ENTRY'
 E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\details\memory_pooling_dynamic_alloc.c(46,76): warning C4133: '=': incompatible types - from 'PSLIST_ENTRY' to '__synapse_memory_pooling_dynamic_chunk *'
+  memory_pooling_dynamic_init.c
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\details\memory_pooling_dynamic_init.c(24,45): warning C4133: 'function': incompatible types - from '__synapse_memory_pooling_dynamic_chunk *' to 'PSLIST_ENTRY'
+  dynamic_pool_alloc.c
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\dynamic_pool_alloc.c(9,15): warning C4013: '__synapse_memory_pooling_dynamic_allocatea' undefined; assuming extern returning int
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\dynamic_pool_alloc.c(8,1): warning C4047: 'initializing': 'void *' differs in levels of indirection from 'int'
   dynamic_pool_init.c
   Generating Code...
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\dynamic_pool_alloc.c(38): warning C4716: 'synapse_memory_pooling_dynamic_shrink': must return a value
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic\dynamic_pool_alloc.c(30): warning C4716: 'synapse_memory_pooling_dynamic_expand': must return a value
   synapse-memory-pooling-dynamic.vcxproj -> E:\Programming\C++\Projects\Experimental\synapse-memory\libs\x64\debug\synapse-memory-pooling-dynamic.lib

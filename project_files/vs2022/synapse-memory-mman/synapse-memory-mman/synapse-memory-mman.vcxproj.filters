@@ -36,6 +36,18 @@
     <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\details\memory_mman_stdheap_init.h">
       <Filter>Header Files\standard_heap\details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\stdheap_type.h">
+      <Filter>Header Files\standard_heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\stdheap_init.h">
+      <Filter>Header Files\standard_heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\stdheap_alloc.h">
+      <Filter>Header Files\standard_heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\stdheap.h">
+      <Filter>Header Files\standard_heap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\c\mman\standard_heap\details\memory_mman_stdheap_alloc.c">
@@ -43,6 +55,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\source\c\mman\standard_heap\details\memory_mman_stdheap_init.c">
       <Filter>Source Files\standard_heap\details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\c\mman\standard_heap\stdheap_init.c">
+      <Filter>Source Files\standard_heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\c\mman\standard_heap\stdheap_alloc.c">
+      <Filter>Source Files\standard_heap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

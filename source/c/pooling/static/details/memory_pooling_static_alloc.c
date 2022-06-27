@@ -8,7 +8,7 @@ __synapse_memory_pooling_static_allocate
 		InterlockedPopEntrySList(&pMpool->hnd_pool_stack);
 }
 
-void*
+void
 __synapse_memory_pooling_static_deallocate
 	(__synapse_memory_pooling_static* pMpool, __synapse_memory_pooling_static_chunk* pMpoolChunk)
 {

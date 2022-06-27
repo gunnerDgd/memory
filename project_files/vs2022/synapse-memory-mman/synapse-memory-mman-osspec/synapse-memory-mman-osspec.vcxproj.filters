@@ -51,6 +51,9 @@
     <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\winheap_init.h">
       <Filter>Header Files\os_specific\winheap</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\winheap.h">
+      <Filter>Header Files\os_specific\winheap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\c\mman\os_specific\winheap\details\memory_mman_winheap_alloc.c">
