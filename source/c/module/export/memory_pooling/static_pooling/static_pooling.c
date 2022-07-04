@@ -29,38 +29,27 @@ void*
 	synapse_memory_mpool_static_export_construct
 		(va_list pArgument)
 {
-	synapse_memory_pooling_static_traits*
-		ptr_mpool
+	synapse_memory_pooling_static*
+		ptr_mpool_static
 			= malloc
-				(sizeof(synapse_memory_pooling_static_traits));
+				(sizeof(synapse_memory_pooling_static));
 
-	 ptr_mpool->hnd_traits
+	 *ptr_mpool_static
 		= synapse_memory_pooling_static_initialize
 			(va_arg(pArgument, synapse_memory_mman_traits*),
 			 va_arg(pArgument, size_t),
 			 va_arg(pArgument, size_t));
 
-	 ptr_mpool->allocate
-		 = &synapse_memory_pooling_static_allocate;
-	 ptr_mpool->deallocate
-		 = &synapse_memory_pooling_static_deallocate;
-	 ptr_mpool->retrieve_pointer
-		 = &synapse_memory_pooling_static_retrieve_pointer;
-
 	 return
-		 ptr_mpool;
+		 ptr_mpool_static;
 }
 
 void
 	synapse_memory_mpool_static_export_destruct
 		(void* pVoidMpool)
 {
-	synapse_memory_pooling_static_traits*
-		ptr_traits
-			= pVoidMpool;
-
 	synapse_memory_pooling_static_cleanup
-		(ptr_traits->hnd_traits);
+		(*(synapse_memory_pooling_static*)pVoidMpool);
 	free
 		(pVoidMpool);
 }
@@ -69,31 +58,24 @@ void*
 	synapse_memory_mpool_static_export_duplicate
 		(void* pVoidMpool)
 {
-	synapse_memory_pooling_static_traits
+	synapse_memory_pooling_static
 		*ptr_existing
 			= pVoidMpool,
 		*ptr_mpool
 			= malloc
-				(sizeof(synapse_memory_pooling_static_traits));
+				(sizeof(synapse_memory_pooling_static));
 
-	ptr_mpool->hnd_traits
+	*ptr_mpool
 		= synapse_memory_pooling_static_initialize
 				(synapse_memory_opaque_cast
-					(ptr_existing->hnd_traits, __synapse_memory_pooling_static*)
+					((*ptr_existing), __synapse_memory_pooling_static*)
 						->ptr_pool_mman,
 				 synapse_memory_opaque_cast
-					(ptr_existing->hnd_traits, __synapse_memory_pooling_static*)
+					((*ptr_existing), __synapse_memory_pooling_static*)
 						->sz_pooled_chunk,
 				 synapse_memory_opaque_cast
-					(ptr_existing->hnd_traits, __synapse_memory_pooling_static*)
+					((*ptr_existing), __synapse_memory_pooling_static*)
 						->sz_pooled_chunk_count);
-
-	ptr_mpool->allocate
-		= &synapse_memory_pooling_static_allocate;
-	ptr_mpool->deallocate
-		= &synapse_memory_pooling_static_deallocate;
-	ptr_mpool->retrieve_pointer
-		= &synapse_memory_pooling_static_retrieve_pointer;
 
 	return
 		ptr_mpool;

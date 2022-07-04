@@ -17,6 +17,13 @@ static synapse_modules_component_interface_handle
 			__synapse_memory_module_mpool_static,
 			__synapse_memory_module_mpool_dynamic;
 
+static synapse_memory_mman_traits
+			__synapse_memory_module_mman_typedata;
+static synapse_memory_pooling_static_traits
+			__synapse_memory_module_mpool_static_typedata;
+static synapse_memory_pooling_dynamic_traits
+			__synapse_memory_module_mpool_dynamic_typedata;
+
 synapse_modules_export
 void
 synapse_memory_module_attach
@@ -30,17 +37,21 @@ synapse_memory_module_attach
 
 	__synapse_memory_module_stdheap_interface
 		= synapse_modules_component_manager_register_interface
-				(hnd_compman, synapse_memory_mman_stdheap_export(), "standard_heap");
+				(hnd_compman, synapse_memory_mman_stdheap_export(), "standard_heap",
+					&__synapse_memory_module_mman_typedata);
 	__synapse_memory_module_winheap_interface
 		= synapse_modules_component_manager_register_interface
-				(hnd_compman, synapse_memory_mman_winheap_export(), "windows_heap");
+				(hnd_compman, synapse_memory_mman_winheap_export(), "windows_heap",
+					&__synapse_memory_module_mman_typedata);
 
 	__synapse_memory_module_mpool_static
 		= synapse_modules_component_manager_register_interface
-				(hnd_compman, synapse_memory_mpool_static_export(), "static_pool");
+				(hnd_compman, synapse_memory_mpool_static_export(), "static_pool",
+					&__synapse_memory_module_mpool_static_typedata);
 	__synapse_memory_module_mpool_dynamic
 		= synapse_modules_component_manager_register_interface
-				(hnd_compman, synapse_memory_mpool_dynamic_export(), "dynamic_pool");
+				(hnd_compman, synapse_memory_mpool_dynamic_export(), "dynamic_pool",
+					&__synapse_memory_module_mpool_dynamic_typedata);
 }
 
 synapse_modules_export

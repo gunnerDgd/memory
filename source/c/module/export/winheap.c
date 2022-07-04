@@ -26,23 +26,15 @@ void*
 	synapse_memory_mman_winheap_export_construct
 		(va_list pInitArgs)
 {
-	synapse_memory_mman_traits*
-		ptr_stdheap_traits
-		= malloc(sizeof(synapse_memory_mman_traits));
+	synapse_memory_mman_winheap*
+		ptr_winheap_handle
+			= malloc(sizeof(synapse_memory_mman_winheap));
 		
-	ptr_stdheap_traits->hnd_mman
+	*ptr_winheap_handle
 		= synapse_memory_mman_winheap_initialize
 				(va_arg(pInitArgs, size_t), va_arg(pInitArgs, size_t));
-	ptr_stdheap_traits->allocate
-		= &synapse_memory_mman_winheap_allocate;
-	ptr_stdheap_traits->deallocate
-		= &synapse_memory_mman_winheap_deallocate;
-	ptr_stdheap_traits->alloc_unit
-		= NULL;
-
-	va_end(pInitArgs);
 	return
-		ptr_stdheap_traits;
+		ptr_winheap_handle;
 }
 
 void
@@ -50,8 +42,7 @@ void
 		(void* pVoidStdHeap)
 {
 	synapse_memory_mman_winheap_cleanup
-		(((synapse_memory_mman_traits*)pVoidStdHeap)
-			->hnd_mman);
+		(*(synapse_memory_mman_winheap*)pVoidStdHeap);
 	free
 		(pVoidStdHeap);
 }
@@ -60,20 +51,14 @@ void*
 	synapse_memory_mman_winheap_export_duplicate
 		(void* pVoidStdHeap)
 {
-	synapse_memory_mman_traits*
-		ptr_stdheap_traits
-			= malloc(sizeof(synapse_memory_mman_traits));
+	synapse_memory_mman_winheap*
+		ptr_stdheap_handle
+			= malloc(sizeof(synapse_memory_mman_winheap));
 		
-	ptr_stdheap_traits->hnd_mman
+	*ptr_stdheap_handle
 		= ((synapse_memory_mman_traits*)pVoidStdHeap)
 				->hnd_mman;
-	ptr_stdheap_traits->allocate
-		= &synapse_memory_mman_winheap_allocate;
-	ptr_stdheap_traits->deallocate
-		= &synapse_memory_mman_winheap_deallocate;
-	ptr_stdheap_traits->alloc_unit
-		= NULL;
 
 	return
-		ptr_stdheap_traits;
+		ptr_stdheap_handle;
 }

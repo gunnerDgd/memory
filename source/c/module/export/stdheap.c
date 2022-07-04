@@ -1,5 +1,7 @@
 #include <memory/module/export/stdheap.h>
+
 #include <memory/mman/standard_heap/stdheap.h>
+#include <memory/mman/standard_heap/details/memory_mman_stdheap_type.h>
 
 #include <stdlib.h>
 
@@ -26,22 +28,16 @@ void*
 synapse_memory_mman_stdheap_export_construct
 	(va_list pInitArgs)
 {
-	synapse_memory_mman_traits*
-		ptr_stdheap_traits
-		= malloc(sizeof(synapse_memory_mman_traits));
+	synapse_memory_mman_stdheap*
+		ptr_stdheap_handle
+			= malloc(sizeof(synapse_memory_mman_stdheap));
 		
-	ptr_stdheap_traits->hnd_mman
+	*ptr_stdheap_handle
 		= synapse_memory_mman_stdheap_initialize
 				(va_arg(pInitArgs, size_t));
-	ptr_stdheap_traits->allocate
-		= &synapse_memory_mman_stdheap_allocate;
-	ptr_stdheap_traits->deallocate
-		= &synapse_memory_mman_stdheap_deallocate;
-	ptr_stdheap_traits->alloc_unit
-		= &synapse_memory_mman_stdheap_alloc_unit;
 
 	return
-		ptr_stdheap_traits;
+		ptr_stdheap_handle;
 }
 
 void
@@ -49,8 +45,7 @@ void
 		(void* pVoidStdHeap)
 {
 	synapse_memory_mman_stdheap_cleanup
-		(((synapse_memory_mman_traits*)pVoidStdHeap)
-			->hnd_mman);
+		(*(synapse_memory_mman_stdheap*)pVoidStdHeap);
 	free
 		(pVoidStdHeap);
 }
@@ -59,21 +54,15 @@ void*
 	synapse_memory_mman_stdheap_export_duplicate
 		(void* pVoidStdHeap)
 {
-	synapse_memory_mman_traits*
-		ptr_stdheap_traits
-			= malloc(sizeof(synapse_memory_mman_traits));
+	synapse_memory_mman_stdheap*
+		ptr_stdheap_handle
+			= malloc(sizeof(synapse_memory_mman_stdheap));
 		
-	ptr_stdheap_traits->hnd_mman
+	*ptr_stdheap_handle
 		= synapse_memory_mman_stdheap_initialize
-				(ptr_stdheap_traits->alloc_unit
-					(ptr_stdheap_traits->hnd_mman));
-	ptr_stdheap_traits->allocate
-		= &synapse_memory_mman_stdheap_allocate;
-	ptr_stdheap_traits->deallocate
-		= &synapse_memory_mman_stdheap_deallocate;
-	ptr_stdheap_traits->alloc_unit
-		= &synapse_memory_mman_stdheap_alloc_unit;
+				(((__synapse_memory_mman_stdheap*)pVoidStdHeap)
+					->sz_stdheap_alloc_unit);
 
 	return
-		ptr_stdheap_traits;
+		ptr_stdheap_handle;
 }
