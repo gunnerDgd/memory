@@ -1,8 +1,6 @@
 #pragma once
 #include <memory/defines/opaque/opaque.h>
+#include <memory/pooling/static_pooling_traits.h>
 
-synapse_memory_opaque_declare
-	(synapse_memory_pooling_static_chunk)
-
-synapse_memory_opaque_declare
-	(synapse_memory_pooling_static)
+typedef synapse_memory_pooling_static_handle
+			synapse_memory_pooling_static;

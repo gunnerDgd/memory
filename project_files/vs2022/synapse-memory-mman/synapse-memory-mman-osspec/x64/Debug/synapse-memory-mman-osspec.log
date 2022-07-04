@@ -1,4 +1,4 @@
-﻿  memory_mman_winheap_init.c
-  winheap_alloc.c
+﻿  winheap_alloc.c
+  winheap_init.c
   Generating Code...
   synapse-memory-mman-osspec.vcxproj -> E:\Programming\C++\Projects\Experimental\synapse-memory\libs\x64\debug\synapse-memory-mman-osspec.lib

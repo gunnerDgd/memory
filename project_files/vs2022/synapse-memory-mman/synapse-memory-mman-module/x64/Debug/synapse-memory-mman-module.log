@@ -1,0 +1,6 @@
+﻿  dynamic_pool.c
+  main.c
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\module\main.c(40,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Generating Code...
+     Creating library E:\Programming\C++\Projects\Experimental\synapse-memory\modules\x64\debug\synapse-memory-mman-module.lib and object E:\Programming\C++\Projects\Experimental\synapse-memory\modules\x64\debug\synapse-memory-mman-module.exp
+  synapse-memory-mman-module.vcxproj -> E:\Programming\C++\Projects\Experimental\synapse-memory\modules\x64\debug\synapse-memory-mman-module.dll

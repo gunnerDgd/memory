@@ -47,7 +47,7 @@ __synapse_memory_pooling_static_cleanup
 	for(__synapse_memory_pooling_static_chunk
 			*ptr_chunk = InterlockedPopEntrySList(&pMpool->hnd_pool_stack) ; 
 			 ptr_chunk;
-			 ptr_chunk = InterlockedPopEntrySlist(&pMpool->hnd_pool_stack))
+			 ptr_chunk = InterlockedPopEntrySList(&pMpool->hnd_pool_stack))
 		_aligned_free(ptr_chunk);
 
 	synapse_memory_mman_traits_deallocate

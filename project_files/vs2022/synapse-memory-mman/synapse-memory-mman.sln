@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "synapse-memory-mman", "syna
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "synapse-memory-mman-osspec", "synapse-memory-mman-osspec\synapse-memory-mman-osspec.vcxproj", "{4E6A7020-3275-4727-8129-468067C42C32}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "synapse-memory-mman-module", "synapse-memory-mman-module\synapse-memory-mman-module.vcxproj", "{24743857-D4E1-47A6-B248-6C8426E1331C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{4E6A7020-3275-4727-8129-468067C42C32}.Release|x64.Build.0 = Release|x64
 		{4E6A7020-3275-4727-8129-468067C42C32}.Release|x86.ActiveCfg = Release|Win32
 		{4E6A7020-3275-4727-8129-468067C42C32}.Release|x86.Build.0 = Release|Win32
+		{24743857-D4E1-47A6-B248-6C8426E1331C}.Debug|x64.ActiveCfg = Debug|x64
+		{24743857-D4E1-47A6-B248-6C8426E1331C}.Debug|x64.Build.0 = Debug|x64
+		{24743857-D4E1-47A6-B248-6C8426E1331C}.Debug|x86.ActiveCfg = Debug|Win32
+		{24743857-D4E1-47A6-B248-6C8426E1331C}.Debug|x86.Build.0 = Debug|Win32
+		{24743857-D4E1-47A6-B248-6C8426E1331C}.Release|x64.ActiveCfg = Release|x64
+		{24743857-D4E1-47A6-B248-6C8426E1331C}.Release|x64.Build.0 = Release|x64
+		{24743857-D4E1-47A6-B248-6C8426E1331C}.Release|x86.ActiveCfg = Release|Win32
+		{24743857-D4E1-47A6-B248-6C8426E1331C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,5 @@
 #pragma once
-#include <memory/defines/opaque/opaque.h>
+#include <memory/mman/mman_traits.h>
 
-synapse_memory_opaque_declare
-	(synapse_memory_mman_stdheap)
+typedef synapse_memory_mman_handle
+			synapse_memory_mman_stdheap;

@@ -6,7 +6,7 @@ synapse_memory_pooling_dynamic_allocate
 	(synapse_memory_pooling_dynamic pMpool, void* pAllocHint)
 {
 	synapse_memory_pooling_dynamic_chunk ptr_chunk =
-		{ .opaque = __synapse_memory_pooling_dynamic_allocatea
+		{ .opaque = __synapse_memory_pooling_dynamic_allocate
 						(synapse_memory_opaque_reference(pMpool), pAllocHint)};
 
 	return ptr_chunk;
@@ -25,16 +25,18 @@ size_t
 synapse_memory_pooling_dynamic_expand
 	(synapse_memory_pooling_dynamic pMpool, size_t pExpandSize)
 {
-	__synapse_memory_pooling_dynamic_expand
-		(synapse_memory_opaque_reference(pMpool), pExpandSize);
+	return
+		__synapse_memory_pooling_dynamic_expand
+			(synapse_memory_opaque_reference(pMpool), pExpandSize);
 }
 
 size_t
 synapse_memory_pooling_dynamic_shrink
 	(synapse_memory_pooling_dynamic pMpool, size_t pShrinkSize)
 {
-	__synapse_memory_pooling_dynamic_shrink
-		(synapse_memory_opaque_reference(pMpool), pShrinkSize);
+	return 
+		__synapse_memory_pooling_dynamic_shrink
+			(synapse_memory_opaque_reference(pMpool), pShrinkSize);
 }
 
 size_t

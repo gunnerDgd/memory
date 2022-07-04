@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\module">
+      <UniqueIdentifier>{8f634ebb-003a-435a-a996-28a571ff2b2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\module">
+      <UniqueIdentifier>{ca1a1581-a207-43ac-9b14-ba9072052e32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\module\export">
+      <UniqueIdentifier>{90d0f52b-342b-41ea-85f3-23a0b578a826}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\module\export">
+      <UniqueIdentifier>{4bece186-1231-4c2c-a1dc-abd5fe6fe2ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\module\export\memory_pooling">
+      <UniqueIdentifier>{9e93483d-8883-4834-b1b5-8513361e415b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\module\export\memory_pooling">
+      <UniqueIdentifier>{86e5e1a8-b4ce-4ca5-beb5-d0bd1628401d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\module\export\memory_pooling\static_pooling">
+      <UniqueIdentifier>{537d7ac7-d8f8-4639-8099-f04ccbe40dba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\module\export\memory_pooling\dynamic_pooling">
+      <UniqueIdentifier>{b1a70585-3035-49fb-a42e-d7c76255d8a1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\memory\module\main.h">
+      <Filter>Header Files\module</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\module\export\stdheap.h">
+      <Filter>Header Files\module\export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\module\export\winheap.h">
+      <Filter>Header Files\module\export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\module\export\memory_pooling\static_pooling\static_pool.h">
+      <Filter>Header Files\module\export\memory_pooling\static_pooling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\module\export\memory_pooling\dynamic_pooling\dynamic_pool.h">
+      <Filter>Header Files\module\export\memory_pooling\dynamic_pooling</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\source\c\module\main.c">
+      <Filter>Source Files\module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\c\module\export\stdheap.c">
+      <Filter>Source Files\module\export</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\c\module\export\winheap.c">
+      <Filter>Source Files\module\export</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\c\module\export\memory_pooling\static_pooling\static_pooling.c">
+      <Filter>Source Files\module\export\memory_pooling</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\c\module\export\memory_pooling\dynamic_pooling\dynamic_pool.c">
+      <Filter>Source Files\module\export\memory_pooling</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
