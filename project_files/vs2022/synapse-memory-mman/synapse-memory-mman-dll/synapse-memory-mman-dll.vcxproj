@@ -33,6 +33,7 @@
     <ClInclude Include="..\..\..\..\..\..\synapse\include\synapse\memory\pooling\static_pooling\static_pooling.h" />
     <ClInclude Include="..\..\..\..\..\..\synapse\include\synapse\memory\standard_heap.h" />
     <ClInclude Include="..\..\..\..\..\..\synapse\include\synapse\memory\memory.h" />
+    <ClInclude Include="..\..\..\..\..\..\synapse\include\synapse\__internal\memory\init.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -138,7 +139,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>E:\Programming\C++\Projects\Experimental\synapse-memory\libs\x64\debug\*.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>E:\Programming\C++\Projects\synapse\libs\x64\debug\memory\*.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

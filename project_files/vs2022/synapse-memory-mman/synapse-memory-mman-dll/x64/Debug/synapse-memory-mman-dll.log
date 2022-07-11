@@ -1,5 +1,3 @@
-﻿  dynamic_pooling.c
-  standard_heap.c
-  static_pooling.c
-  Generating Code...
+﻿  LINK : program database E:\Programming\C++\Projects\synapse\bin\x64\debug\synapse-memory-mman-dll.pdb missing; performing full link
+     Creating library E:\Programming\C++\Projects\synapse\bin\x64\debug\synapse-memory-mman-dll.lib and object E:\Programming\C++\Projects\synapse\bin\x64\debug\synapse-memory-mman-dll.exp
   synapse-memory-mman-dll.vcxproj -> E:\Programming\C++\Projects\synapse\bin\x64\debug\synapse-memory-mman-dll.dll

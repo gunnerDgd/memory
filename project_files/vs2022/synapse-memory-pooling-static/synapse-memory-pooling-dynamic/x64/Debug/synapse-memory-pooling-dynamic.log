@@ -6,4 +6,4 @@ E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\dynamic
   dynamic_pool_alloc.c
   dynamic_pool_init.c
   Generating Code...
-  synapse-memory-pooling-dynamic.vcxproj -> E:\Programming\C++\Projects\Experimental\synapse-memory\libs\x64\debug\synapse-memory-pooling-dynamic.lib
+  synapse-memory-pooling-dynamic.vcxproj -> E:\Programming\C++\Projects\synapse\libs\x64\debug\memory\synapse-memory-pooling-dynamic.lib

@@ -31,6 +31,9 @@
     <Filter Include="Header Files\defines\export">
       <UniqueIdentifier>{538bb5a9-43e3-46d9-bc43-11522b61c346}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\__internal">
+      <UniqueIdentifier>{819d063e-3362-4d49-88e8-2f0d59e12f4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\c\memory.c">
@@ -70,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\synapse\include\synapse\memory\defines\export\export.h">
       <Filter>Header Files\defines\export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\synapse\include\synapse\__internal\memory\init.h">
+      <Filter>Header Files\__internal</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

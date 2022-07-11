@@ -12,8 +12,9 @@ void
 	synapse_memory_initialize_system
 		()
 {
-	__synapse_memory_mman
-		= synapse_initialize_standard_heap();
+	if(!__synapse_memory_mman)
+		__synapse_memory_mman
+			= synapse_initialize_standard_heap();
 }
 
 synapse_memory_dll
@@ -21,8 +22,12 @@ void
 	synapse_memory_cleanup_system
 		()
 {
-	synapse_cleanup_standard_heap
-		(__synapse_memory_mman);
+	if(__synapse_memory_mman)
+		synapse_cleanup_standard_heap
+			(__synapse_memory_mman);
+
+	__synapse_memory_mman
+		= NULL;
 }
 
 synapse_memory_dll

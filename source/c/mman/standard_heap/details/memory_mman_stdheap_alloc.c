@@ -19,7 +19,7 @@ __synapse_memory_mman_stdheap*
 
 	if (!pHead->ptr_back) {
 		pHead->ptr_back
-			= pHead->ptr_head = ptr_alloc;
+			= (pHead->ptr_head = ptr_alloc);
 	}
 	else {
 		pHead->ptr_back->stdheap_next
@@ -38,7 +38,7 @@ __synapse_memory_mman_stdheap*
 void
 	__synapse_memory_mman_stdheap_deallocate
 		(__synapse_memory_mman_stdheap_head* pHead, 
-			__synapse_memory_mman_stdheap	   * pHeap)
+			__synapse_memory_mman_stdheap  * pHeap)
 {
 	if (pHeap->stdheap_alloc_head != pHead)
 		return;
@@ -46,15 +46,21 @@ void
 	if(pHeap->stdheap_prev)
 		pHeap->stdheap_prev->stdheap_next
 			= pHeap->stdheap_next;
+	else
+		pHead->ptr_head
+			= pHeap->stdheap_next;
 
 	if(pHeap->stdheap_next)
 		pHeap->stdheap_next->stdheap_prev
+			= pHeap->stdheap_prev;
+	else
+		pHead->ptr_back
 			= pHeap->stdheap_prev;
 
 	free
 		(pHeap->stdheap_ptr);
 	free
-		(pHead);
+		(pHeap);
 }
 
 void
@@ -71,12 +77,12 @@ void
 			ptr_dealloc
 				= ptr_seek;
 
+		ptr_seek
+			= ptr_seek->stdheap_next;
+
 		free
 			(ptr_dealloc->stdheap_ptr);
 		free
 			(ptr_dealloc);
-
-		ptr_seek
-			= ptr_seek->stdheap_next;
 	}
 }
