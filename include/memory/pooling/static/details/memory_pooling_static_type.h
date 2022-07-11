@@ -1,29 +1,28 @@
 #pragma once
-#include <memory/mman/mman_traits.h>
+#include <synapse/memory/interface/memory_manager.h>
 #include <Windows.h>
 
 typedef struct
-	__synapse_memory_pooling_static_chunk
+	__synapse_memory_pooling_static_block
 {
-	SLIST_ENTRY chk_slist_hnd;
-	void*		chk_ptr;
-} __synapse_memory_pooling_static_chunk;
+	SLIST_ENTRY blk_handle;
+	
+	void*		blk_pointer;
+	void*		blk_pool   ;
+} __synapse_memory_pooling_static_block;
 
 typedef struct
 	__synapse_memory_pooling_static
 {
-	synapse_memory_mman_traits*
+	synapse_memory_manager*
 		ptr_pool_mman;
 	SLIST_HEADER
 		hnd_pool_stack;
 
+	synapse_memory_block
+		ptr_pooled_mblock,
+		ptr_mpool_mblock;
 	void*
 		ptr_pooled_memory;
-	size_t
-		sz_pooled_chunk		 ,
-		sz_pooled_chunk_count;
 
-	size_t
-		ptr_pooled_memory_begin,
-		ptr_pooled_memory_end  ;
 } __synapse_memory_pooling_static;

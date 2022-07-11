@@ -1,26 +1,33 @@
 #pragma once
-#include <memory/defines/opaque/opaque.h>
-#include <memory/mman/mman_traits.h>
+#include <synapse/memory/defines/opaque/opaque.h>
+#include <synapse/memory/interface/memory_manager.h>
 
 #include <Windows.h>
 
-typedef struct __synapse_memory_pooling_dynamic_chunk
+typedef struct 
+	__synapse_memory_pooling_dynamic_block
 {
 	SLIST_ENTRY
 		hnd_slist;
 	void*
-		ptr_chunk;
-} __synapse_memory_pooling_dynamic_chunk;
+		ptr_block_mpool ;
+	void*
+		ptr_block_memory;
+	synapse_memory_block
+		ptr_block_mblock;
+} __synapse_memory_pooling_dynamic_block;
 
-typedef struct __synapse_memory_pooling_dynamic
+typedef struct 
+	__synapse_memory_pooling_dynamic
 {
 	SLIST_HEADER
 		hnd_dynamic_stack;
-	synapse_memory_mman_traits*
+	synapse_memory_manager*
 		ptr_dynamic_mman;
+	synapse_memory_block
+		hnd_dynamic_mblock;
 
-	void*
-		ptr_dynamic_stack;
 	size_t
-		sz_dynamic_stack_chunk;
+		cnt_dynamic_pool,
+		sz_dynamic_pool_block;
 } __synapse_memory_pooling_dynamic;

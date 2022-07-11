@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\memory\defines\alloc.h" />
     <ClInclude Include="..\..\..\..\include\memory\defines\opaque\opaque.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

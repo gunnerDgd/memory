@@ -1,0 +1,5 @@
+﻿  dynamic_pooling.c
+  standard_heap.c
+  static_pooling.c
+  Generating Code...
+  synapse-memory-mman-dll.vcxproj -> E:\Programming\C++\Projects\synapse\bin\x64\debug\synapse-memory-mman-dll.dll

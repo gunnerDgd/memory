@@ -25,7 +25,6 @@
     <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\winheap.h" />
     <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\winheap_alloc.h" />
     <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\winheap_init.h" />
-    <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\winheap_type.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\c\mman\os_specific\winheap\details\memory_mman_winheap_alloc.c" />

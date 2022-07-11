@@ -61,6 +61,8 @@ synapse_modules_initialize
 {
 	strcpy
 		(pInterface->modules_name, "synapse-memory-mman");
+	pInterface->attach
+		= &synapse_memory_module_attach;
 }
 
 synapse_modules_export

@@ -42,9 +42,6 @@
     <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\details\memory_mman_winheap_alloc.h">
       <Filter>Header Files\os_specific\winheap\details</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\winheap_type.h">
-      <Filter>Header Files\os_specific\winheap</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\memory\mman\os_specific\winheap\winheap_alloc.h">
       <Filter>Header Files\os_specific\winheap</Filter>
     </ClInclude>

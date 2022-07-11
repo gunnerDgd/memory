@@ -1,6 +1,10 @@
-﻿  memory_pooling_static_init.c
-E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\static\details\memory_pooling_static_init.c(24,33): warning C4047: '=': 'size_t' differs in levels of indirection from 'void *'
-E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\static\details\memory_pooling_static_init.c(34,83): warning C4047: '=': 'void *' differs in levels of indirection from 'size_t'
-E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\static\details\memory_pooling_static_init.c(50,66): warning C4133: '=': incompatible types - from 'PSLIST_ENTRY' to '__synapse_memory_pooling_static_chunk *'
-E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\static\details\memory_pooling_static_init.c(48,1): warning C4133: 'initializing': incompatible types - from 'PSLIST_ENTRY' to '__synapse_memory_pooling_static_chunk *'
+﻿  memory_pooling_static_alloc.c
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\static\details\memory_pooling_static_alloc.c(8,1): warning C4133: 'initializing': incompatible types - from 'PSLIST_ENTRY' to '__synapse_memory_pooling_static_block *'
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\static\details\memory_pooling_static_alloc.c(27,10): warning C4133: 'function': incompatible types - from '__synapse_memory_pooling_static *' to 'PSLIST_HEADER'
+  memory_pooling_static_init.c
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\static\details\memory_pooling_static_init.c(65,33): warning C4133: '=': incompatible types - from 'PSLIST_ENTRY' to '__synapse_memory_pooling_static_block *'
+E:\Programming\C++\Projects\Experimental\synapse-memory\source\c\pooling\static\details\memory_pooling_static_init.c(59,1): warning C4133: 'initializing': incompatible types - from 'PSLIST_ENTRY' to '__synapse_memory_pooling_static_block *'
+  static_pool_alloc.c
+  static_pool_init.c
+  Generating Code...
   synapse-memory-pooling-static.vcxproj -> E:\Programming\C++\Projects\Experimental\synapse-memory\libs\x64\debug\synapse-memory-pooling-static.lib

@@ -36,9 +36,6 @@
     <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\details\memory_mman_stdheap_init.h">
       <Filter>Header Files\standard_heap\details</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\stdheap_type.h">
-      <Filter>Header Files\standard_heap</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\memory\mman\standard_heap\stdheap_init.h">
       <Filter>Header Files\standard_heap</Filter>
     </ClInclude>

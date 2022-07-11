@@ -24,5 +24,8 @@
     <ClInclude Include="..\..\..\..\include\memory\defines\opaque\opaque.h">
       <Filter>Header Files\memory\opaque</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\memory\defines\alloc.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
