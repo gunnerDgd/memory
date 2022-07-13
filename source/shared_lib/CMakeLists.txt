@@ -22,3 +22,8 @@ target_include_directories(
 target_compile_options(
   synapse_memory_dll PRIVATE /Dsynapse_memory_export_mode
 )
+
+add_dependencies(
+    synapse_memory_dll,
+    synapse_memory_lib
+)

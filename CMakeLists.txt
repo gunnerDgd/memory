@@ -8,8 +8,3 @@ project(
 
 add_subdirectory(source/lib)
 add_subdirectory(source/shared_lib)
-
-add_dependencies(
-    synapse_memory_dll,
-    synapse_memory_lib
-)
