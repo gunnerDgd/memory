@@ -16,6 +16,10 @@ add_library(
 )
 
 target_include_directories(
+  synapse_memory_dll PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../../include
+)
+
+target_include_directories(
   synapse_memory_dll PUBLIC ${CMAKE_SOURCE_DIR}/include
 )
 
@@ -23,7 +27,7 @@ target_compile_options(
   synapse_memory_dll PRIVATE /Dsynapse_memory_export_mode
 )
 
-add_dependencies(
-    synapse_memory_dll,
-    synapse_memory_lib
+target_link_libraries(
+  synapse_memory_dll
+  synapse_memory_lib
 )

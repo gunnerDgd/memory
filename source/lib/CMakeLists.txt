@@ -14,6 +14,11 @@ file(
 add_library(
   synapse_memory_lib STATIC ${src_synapse_memory}
 )
+
 target_include_directories(
-  synapse_memory_lib PUBLIC ${CMAKE_SOURCE_DIR}/../include
+  synapse_memory_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../../include
+)
+
+target_include_directories(
+  synapse_memory_lib PUBLIC ${CMAKE_SOURCE_DIR}/include
 )
