@@ -1,6 +1,6 @@
 #pragma once
-#include <synapse/memory/interface/memory_pooling.h>
-#include <synapse/memory/interface/memory_manager.h>
+#include <memory/interface/memory_pooling.h>
+#include <memory/interface/memory_manager.h>
 
 synapse_memory_pool_handle
 	synapse_memory_pooling_dynamic_initialize

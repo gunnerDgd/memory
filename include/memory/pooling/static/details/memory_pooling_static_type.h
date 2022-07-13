@@ -1,5 +1,5 @@
 #pragma once
-#include <synapse/memory/interface/memory_manager.h>
+#include <memory/interface/memory_manager.h>
 #include <Windows.h>
 
 typedef struct

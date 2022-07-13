@@ -1,6 +1,6 @@
 #pragma once
-#include <synapse/memory/defines/opaque/opaque.h>
-#include <synapse/memory/interface/memory_manager.h>
+#include <memory/defines/opaque/opaque.h>
+#include <memory/interface/memory_manager.h>
 
 #include <Windows.h>
 

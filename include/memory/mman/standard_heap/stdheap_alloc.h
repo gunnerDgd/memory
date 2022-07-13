@@ -1,5 +1,5 @@
 #pragma once
-#include <synapse/memory/interface/memory_manager.h>
+#include <memory/interface/memory_manager.h>
 
 synapse_memory_block
 	synapse_memory_mman_stdheap_allocate

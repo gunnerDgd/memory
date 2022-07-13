@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.0)
+
+project(
+  synapse-memory-lib
+  VERSION 0.1.0
+  LANGUAGES C
+)
+
+file(
+    GLOB src_synapse_memory CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.c
+)
+
+add_library(
+  synapse_memory_lib STATIC ${src_synapse_memory}
+)
+target_include_directories(
+  synapse_memory_lib PUBLIC ${CMAKE_SOURCE_DIR}/../include
+)

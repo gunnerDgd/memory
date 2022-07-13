@@ -1,5 +1,5 @@
 #pragma once
-#include <synapse/memory/interface/memory_manager.h>
+#include <memory/interface/memory_manager.h>
 #include <memory/pooling/static/details/memory_pooling_static_type.h>
 
 __synapse_memory_pooling_static*
