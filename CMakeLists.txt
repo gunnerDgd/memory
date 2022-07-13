@@ -7,7 +7,6 @@ project(
 )
 
 add_subdirectory(source/lib)
-add_subdirectory(source/lib_cpp)
 add_subdirectory(source/shared_lib)
 
 add_dependencies(
