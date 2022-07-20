@@ -6,19 +6,7 @@ project(
   LANGUAGES C
 )
 
-file(
-    GLOB src_synapse_memory CONFIGURE_DEPENDS
-    ${CMAKE_CURRENT_SOURCE_DIR}/*.c
-)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mman/standard_heap)
 
-add_library(
-  synapse_memory_lib STATIC ${src_synapse_memory}
-)
-
-target_include_directories(
-  synapse_memory_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../../include
-)
-
-target_include_directories(
-  synapse_memory_lib PUBLIC ${CMAKE_SOURCE_DIR}/include
-)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pooling/static)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pooling/dynamic)

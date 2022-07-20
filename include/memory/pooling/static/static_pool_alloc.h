@@ -9,7 +9,7 @@ synapse_memory_pooled_block
 synapse_memory_pooled_block
 	synapse_memory_pooling_static_allocate_until_success
 		(synapse_memory_pool_handle);
-
+		
 void
 	synapse_memory_pooling_static_deallocate
 		(synapse_memory_pool_handle, synapse_memory_pooled_block);

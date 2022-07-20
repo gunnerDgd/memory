@@ -2,12 +2,12 @@
 #include <memory/defines/opaque/opaque.h>
 #include <memory/interface/memory_manager.h>
 
-#include <Windows.h>
+#include <structure/list/single_linked.h>
 
 typedef struct 
 	__synapse_memory_pooling_dynamic_block
 {
-	SLIST_ENTRY
+	synapse_structure_single_linked_node
 		hnd_slist;
 	void*
 		ptr_block_mpool ;
@@ -20,7 +20,7 @@ typedef struct
 typedef struct 
 	__synapse_memory_pooling_dynamic
 {
-	SLIST_HEADER
+	synapse_structure_single_linked
 		hnd_dynamic_stack;
 	synapse_memory_manager*
 		ptr_dynamic_mman;
@@ -28,6 +28,6 @@ typedef struct
 		hnd_dynamic_mblock;
 
 	size_t
-		cnt_dynamic_pool,
-		sz_dynamic_pool_block;
+		dynamic_pool_count,
+		dynamic_pool_block_size;
 } __synapse_memory_pooling_dynamic;

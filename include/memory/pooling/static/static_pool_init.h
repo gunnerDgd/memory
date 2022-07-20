@@ -7,5 +7,5 @@ synapse_memory_pool_handle
 		(synapse_memory_manager*, size_t, size_t);
 
 void
-synapse_memory_pooling_static_cleanup
-	(synapse_memory_pool_handle);
+	synapse_memory_pooling_static_cleanup
+		(synapse_memory_pool_handle);

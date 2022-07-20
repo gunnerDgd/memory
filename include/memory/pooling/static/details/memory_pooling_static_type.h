@@ -1,12 +1,12 @@
 #pragma once
 #include <memory/interface/memory_manager.h>
-#include <Windows.h>
+#include <structure/list/single_linked.h>
 
 typedef struct
 	__synapse_memory_pooling_static_block
 {
-	SLIST_ENTRY blk_handle;
-	
+	synapse_structure_single_linked_node
+				blk_handle;
 	void*		blk_pointer;
 	void*		blk_pool   ;
 } __synapse_memory_pooling_static_block;
@@ -16,7 +16,7 @@ typedef struct
 {
 	synapse_memory_manager*
 		ptr_pool_mman;
-	SLIST_HEADER
+	synapse_structure_single_linked
 		hnd_pool_stack;
 
 	synapse_memory_block
