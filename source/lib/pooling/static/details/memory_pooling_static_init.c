@@ -1,7 +1,5 @@
 #include <memory/pooling/static/details/memory_pooling_static_init.h>
-#include <memory/memory.h>
-
-#include <stdalign.h>
+#include <memory/pooling/static/details/memory_pooling_static_alloc.h>
 
 __synapse_memory_pooling_static*
 __synapse_memory_pooling_static_initialize
@@ -19,8 +17,7 @@ __synapse_memory_pooling_static_initialize
 					(hnd_mblock);
 
 	ptr_mpool->hnd_pool_stack
-		= synapse_structure_single_linked_initialize
-				(pMman);
+		= NULL;
 	
 	ptr_mpool->ptr_pooled_mblock
 		= pMman->allocate
@@ -38,35 +35,49 @@ __synapse_memory_pooling_static_initialize
 	{
 		__synapse_memory_pooling_static_block* 
 			ptr_chunk
-				= _aligned_malloc
-						(sizeof(__synapse_memory_pooling_static_block), 16);
-
-		ptr_chunk->blk_pointer
-			= (uint8_t*)ptr_mpool->ptr_pooled_memory 
-					  + pChunkSize * pChunkCount;
-		ptr_chunk->blk_pool
-			= ptr_mpool;
-
-		ptr_chunk->blk_handle
-			= synapse_structure_single_linked_push
-					(ptr_mpool->hnd_pool_stack,
-							&ptr_chunk, sizeof(__synapse_memory_pooling_static_block*));
+				= __synapse_memory_pooling_static_block_initialize
+						(ptr_mpool,
+							(uint8_t*)ptr_mpool->ptr_pooled_memory
+								+ pChunkSize);
+		
+		__synapse_memory_pooling_static_deallocate
+			(ptr_mpool, ptr_chunk);
 	}
 
 	return
 		ptr_mpool;
 }
 
+__synapse_memory_pooling_static_block*
+	__synapse_memory_pooling_static_block_initialize
+		(__synapse_memory_pooling_static* pStaticPool, void* pPoolMemory)
+{
+	synapse_memory_block
+		hnd_block_memory
+			= pStaticPool->ptr_pool_mman->allocate
+					(pStaticPool->ptr_pool_mman->hnd_mman,
+						NULL, sizeof(__synapse_memory_pooling_static_block));
+	 
+	 __synapse_memory_pooling_static_block*
+	 	ptr_block
+			= pStaticPool->ptr_pool_mman->block_pointer
+					(hnd_block_memory);
+	
+	ptr_block->blk_parent_pool	
+		= pStaticPool;
+	ptr_block->blk_pointer
+		= pPoolMemory;
+	ptr_block->hnd_mblock_block_memory
+		= hnd_block_memory;
+	
+	return
+		ptr_block;
+}
+
 void
 __synapse_memory_pooling_static_cleanup
 	(__synapse_memory_pooling_static* pMpool)
 {
-	synapse_structure_single_linked_cleanup
-		(pMpool->hnd_pool_stack);
-	pMpool->ptr_pool_mman->deallocate
-		(pMpool->ptr_pool_mman->hnd_mman,
-					pMpool->ptr_pooled_mblock);
-	pMpool->ptr_pool_mman->deallocate
-		(pMpool->ptr_pool_mman->hnd_mman,
-					pMpool->ptr_mpool_mblock);
+	pMpool->ptr_pool_mman->deallocate_all
+		(pMpool->ptr_pool_mman->hnd_mman);
 }

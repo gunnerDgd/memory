@@ -1,5 +1,4 @@
 #pragma once
-#include <memory/interface/memory_manager.h>
 #include <memory/interface/memory_pooling.h>
 
 synapse_memory_pooled_block

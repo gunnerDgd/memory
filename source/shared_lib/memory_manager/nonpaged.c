@@ -6,7 +6,7 @@
 synapse_memory_dll
     synapse_memory_manager*
 	    synapse_initialize_nonpaged
-            (size_t pBlockSize)
+            ()
 {
     synapse_memory_manager*
         ptr_mman
@@ -27,7 +27,7 @@ synapse_memory_dll
     
     ptr_mman->hnd_mman
         = synapse_memory_mman_nonpaged_initialize
-            (pBlockSize);
+            ();
 
     return ptr_mman;
 }

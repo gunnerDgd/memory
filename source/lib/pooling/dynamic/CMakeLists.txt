@@ -28,7 +28,7 @@ target_include_directories(
 target_include_directories(
     synapse_memory_pooling_dynamic_lib
     PUBLIC 
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../include
+    ${CMAKE_SOURCE_DIR}/submodules/synapse-memory/include
 )
 
 target_include_directories(

@@ -66,5 +66,5 @@ void*
 		synapse_memory_opaque_cast
 			(pChunk, 
 				__synapse_memory_pooling_dynamic_block*)
-						->ptr_block_memory;
+						->ptr_pooled_memory;
 }

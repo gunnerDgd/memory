@@ -1,74 +1,129 @@
 #include <memory/mman/nonpaged/details/mman_nonpaged_init.h>
 #include <memory/mman/nonpaged/details/mman_nonpaged_manip.h>
 
+#include <memory/system/allocate.h>
+
 #include <Windows.h>
 
 __synapse_memory_mman_nonpaged*
     __synapse_memory_mman_nonpaged_initialize
-        (size_t pBlockSize)
+        ()
 {
-    synapse_memory_manager*
-        ptr_mman
-            = synapse_initialize_standard_heap();
-    synapse_memory_block
-        hnd_mblock
-            = ptr_mman->allocate
-                    (ptr_mman->hnd_mman, NULL, 
-                        sizeof(__synapse_memory_mman_nonpaged));
-
     __synapse_memory_mman_nonpaged*
         ptr_nonpaged
-            = ptr_mman->block_pointer
-                    (hnd_mblock);
-
-    ptr_nonpaged->hnd_mblock
-        = hnd_mblock;
-    ptr_nonpaged->hnd_mman
-        = ptr_mman;
-
+            = synapse_memory_allocate_from_system
+                    (NULL, sizeof(__synapse_memory_mman_nonpaged));
+    
     ptr_nonpaged->hnd_pooled
-        = synapse_structure_single_linked_initialize
-            (ptr_mman);
+        = NULL;
     ptr_nonpaged->hnd_pooled_page
-        = synapse_structure_double_linked_initialize
-            (ptr_mman);
+        = NULL;
+    
+    return
+        ptr_nonpaged;
+}
 
-    ptr_nonpaged->size_pooled_block
-        = (1 << pBlockSize);
-    __synapse_memory_mman_nonpaged_reserve
-        (ptr_nonpaged, 1);
+__synapse_memory_mman_nonpaged_bucket*
+    __synapse_memory_mman_nonpaged_initialize_bucket
+        (__synapse_memory_mman_nonpaged* pNonpaged)
+{
+    __synapse_memory_mman_nonpaged_bucket*
+        ptr_bucket
+            = synapse_memory_allocate_from_system
+                    (NULL, sizeof(__synapse_memory_mman_nonpaged_bucket));
+    
+    ptr_bucket->ptr_next
+        = NULL;
+    ptr_bucket->ptr_parent_pool
+        = pNonpaged;
+    return
+        ptr_bucket;
+}
+
+__synapse_memory_mman_nonpaged_bucket_page*
+    __synapse_memory_mman_nonpaged_initialize_bucket_page
+        (__synapse_memory_mman_nonpaged* pNonpaged)
+{
+    __synapse_memory_mman_nonpaged_bucket_page*
+        ptr_bucket_page
+            = synapse_memory_allocate_from_system
+                (NULL, sizeof(__synapse_memory_mman_nonpaged_bucket_page));
+    
+    ptr_bucket_page->ptr_next
+        = NULL;
+    ptr_bucket_page->ptr_page
+        = VirtualAlloc
+                (NULL, __synapse_nonpaged_bucket_page_size,
+                    MEM_COMMIT, PAGE_READWRITE);
+    VirtualLock
+        (ptr_bucket_page->ptr_page,
+            __synapse_nonpaged_bucket_page_size);
+    
+    return
+        ptr_bucket_page;
 }
 
 void
     __synapse_memory_mman_nonpaged_cleanup
         (__synapse_memory_mman_nonpaged* pNonpaged)
 {
-    synapse_structure_double_linked_node
-        ptr_deallocate
-            = synapse_structure_double_linked_node_begin
-                    (pNonpaged->hnd_pooled_page);
+    __synapse_memory_mman_nonpaged_bucket_page*
+        ptr_bucket_page
+            = pNonpaged->hnd_pooled_page;
+    __synapse_memory_mman_nonpaged_bucket*
+        ptr_bucket
+            = pNonpaged->hnd_pooled;
 
-    for( ; ptr_deallocate.opaque
-         ; ptr_deallocate = synapse_structure_double_linked_node_next(ptr_deallocate))
+    while(ptr_bucket_page)
     {
-        void* ptr_page
-                = *(void**)
-                        synapse_structure_double_linked_node_data
-                            (ptr_deallocate);
-
-        VirtualFree
-            (ptr_page, 0, MEM_RELEASE);
+        __synapse_memory_mman_nonpaged_bucket_page*
+            ptr_dealloc_next
+                = ptr_bucket_page->ptr_next;
+        
+        __synapse_memory_mman_nonpaged_cleanup_bucket_page
+            (ptr_bucket_page);
+        ptr_bucket_page
+            = ptr_dealloc_next;
     }
 
-    synapse_structure_double_linked_cleanup
-        (pNonpaged->hnd_pooled_page);
-    synapse_structure_single_linked_cleanup
-        (pNonpaged->hnd_pooled);
+    for (uint8_t it_index = 0;
+                 it_index < 5;
+                 it_index++)
+    {
+        ptr_bucket
+            = pNonpaged->hnd_pooled[it_index];
+        while(ptr_bucket)
+        {
+            __synapse_memory_mman_nonpaged_bucket*
+                ptr_dealloc_next
+                    = ptr_bucket->ptr_next;
+            
+            __synapse_memory_mman_nonpaged_cleanup_bucket
+                (ptr_bucket);
+            
+            ptr_bucket
+                = ptr_dealloc_next;
+        }
+    }
+}
 
-    pNonpaged->hnd_mman->deallocate
-        (pNonpaged->hnd_mman->hnd_mman,
-            pNonpaged->hnd_mblock);
+void
+    __synapse_memory_mman_nonpaged_cleanup_bucket
+        (__synapse_memory_mman_nonpaged_bucket* pBucket)
+{
+    synapse_memory_deallocate_from_system
+        (pBucket, sizeof(__synapse_memory_mman_nonpaged_bucket));
+}
 
-    synapse_cleanup_standard_heap
-        (pNonpaged->hnd_mman);
+void
+    __synapse_memory_mman_nonpaged_cleanup_bucket_page
+        (__synapse_memory_mman_nonpaged_bucket_page* pBucketPage)
+{
+    VirtualUnlock
+        (pBucketPage->ptr_page, __synapse_nonpaged_bucket_page_size);
+    VirtualFree
+        (pBucketPage->ptr_page, 0, MEM_FREE);
+
+    synapse_memory_deallocate_from_system
+        (pBucketPage, sizeof(__synapse_memory_mman_nonpaged_bucket_page));
 }

@@ -5,9 +5,9 @@
 #include <stdlib.h>
 
 synapse_memory_dll
-synapse_memory_static_pool*
-	synapse_initialize_static_pool
-		(size_t pBlockSize, size_t pBlockCount)
+	synapse_memory_static_pool*
+		synapse_initialize_static_pool
+			(size_t pBlockSize, size_t pBlockCount)
 {
 	synapse_memory_static_pool*
 		hnd_static_pool;
@@ -40,9 +40,9 @@ synapse_memory_static_pool*
 }
 
 synapse_memory_dll
-void
-	synapse_cleanup_static_pool
-		(synapse_memory_static_pool* pMpool)
+	void
+		synapse_cleanup_static_pool
+			(synapse_memory_static_pool* pMpool)
 {
 	synapse_memory_pooling_static_cleanup
 		(pMpool->hnd_static_pool);

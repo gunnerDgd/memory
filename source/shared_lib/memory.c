@@ -4,6 +4,10 @@
 #include <memory/export/memory_manager/standard_heap.h>
 #include <memory/export/memory_manager/nonpaged.h>
 
+#include <memory/system/allocate.h>
+
+#include <stdlib.h>
+
 static synapse_memory_manager*
 			__synapse_memory_mman;
 
@@ -60,9 +64,18 @@ synapse_memory_dll
 synapse_memory_dll
 	void*
 		synapse_system_allocate
-			(size_t pSize)   { return malloc(pSize); }
+			(size_t pSize)   
+{ 
+	return 
+		synapse_memory_allocate_from_system
+			(NULL, pSize); 
+}
 
 synapse_memory_dll
 	void
 		synapse_system_deallocate
-			(void* pDealloc) { return free(pDealloc); }
+			(void* pDealloc) 
+{ 
+	synapse_memory_deallocate_from_system
+		(pDealloc, 0)
+}

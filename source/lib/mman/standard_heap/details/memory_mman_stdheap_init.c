@@ -1,5 +1,5 @@
 #include <memory/mman/standard_heap/details/memory_mman_stdheap_init.h>
-#include <memory/memory.h>
+#include <memory/export/memory.h>
 
 #include <string.h>
 

@@ -1,5 +1,5 @@
 #include <memory/mman/standard_heap/details/memory_mman_stdheap_alloc.h>
-#include <memory/memory.h>
+#include <memory/export/memory.h>
 
 __synapse_memory_mman_stdheap*
 	__synapse_memory_mman_stdheap_allocate

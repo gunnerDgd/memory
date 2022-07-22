@@ -30,7 +30,7 @@ synapse_memory_dll
 
 	ptr_mpool->hnd_static_pool
 		= synapse_memory_pooling_dynamic_initialize
-				(synapse_system_memory_manager(), 
+				(synapse_system_memory_manager(),
 						pBlockSize, pInitBlockCount);
 
 	return
