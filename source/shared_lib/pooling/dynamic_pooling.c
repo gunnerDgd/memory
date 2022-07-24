@@ -22,13 +22,12 @@ synapse_memory_dll
 		= &synapse_memory_pooling_dynamic_allocate_until_success;
 	ptr_mpool->deallocate
 		= &synapse_memory_pooling_dynamic_deallocate;
+	ptr_mpool->reserve
+		= &synapse_memory_pooling_dynamic_reserve;
+	ptr_mpool->block_pointer
+		= &synapse_memory_pooling_dynamic_retrieve_pointer;
 
-	ptr_mpool->expand_pool_size
-		= &synapse_memory_pooling_dynamic_expand;
-	ptr_mpool->shrink_pool_size
-		= &synapse_memory_pooling_dynamic_shrink;
-
-	ptr_mpool->hnd_static_pool
+	ptr_mpool->hnd_dynamic_pool
 		= synapse_memory_pooling_dynamic_initialize
 				(synapse_system_memory_manager(),
 						pBlockSize, pInitBlockCount);
@@ -38,12 +37,12 @@ synapse_memory_dll
 }
 
 synapse_memory_dll
-void
-	synapse_cleanup_dynamic_pool
-		(synapse_memory_dynamic_pool* pMpool)
+	void
+		synapse_cleanup_dynamic_pool
+			(synapse_memory_dynamic_pool* pMpool)
 {
 	synapse_memory_pooling_dynamic_cleanup
-		(pMpool->hnd_static_pool);
+		(pMpool->hnd_dynamic_pool);
 	synapse_system_deallocate
 		(pMpool);
 }

@@ -1,7 +1,7 @@
 #include <memory/mman/nonpaged/details/mman_nonpaged_init.h>
 #include <memory/mman/nonpaged/details/mman_nonpaged_manip.h>
 
-#include <memory/system/allocate.h>
+#include <memory/system/allocation/system_allocate.h>
 
 #include <Windows.h>
 
@@ -14,11 +14,15 @@ __synapse_memory_mman_nonpaged*
             = synapse_memory_allocate_from_system
                     (NULL, sizeof(__synapse_memory_mman_nonpaged));
     
-    ptr_nonpaged->hnd_pooled
-        = NULL;
-    ptr_nonpaged->hnd_pooled_page
-        = NULL;
-    
+    ZeroMemory
+        (ptr_nonpaged->hnd_pooled, 
+            sizeof(__synapse_memory_mman_nonpaged_bucket*)
+                * __synapse_nonpaged_bucket_count);
+    ZeroMemory
+        (ptr_nonpaged->hnd_pooled_page, 
+            sizeof(__synapse_memory_mman_nonpaged_bucket*)
+                * __synapse_nonpaged_bucket_count);
+
     return
         ptr_nonpaged;
 }

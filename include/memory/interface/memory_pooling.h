@@ -22,6 +22,9 @@ typedef struct
 	void
 		(*deallocate)
 			(synapse_memory_pool_handle, synapse_memory_pooled_block);
+	void*
+		(*block_pointer)
+			(synapse_memory_pooled_block);
 
 } synapse_memory_static_pool;
 
@@ -29,7 +32,7 @@ typedef struct
 	synapse_memory_dynamic_pool
 {
 	synapse_memory_pool_handle
-		hnd_static_pool;
+		hnd_dynamic_pool;
 
 	synapse_memory_pooled_block
 		(*allocate)
@@ -40,12 +43,11 @@ typedef struct
 	void
 		(*deallocate)
 			(synapse_memory_pool_handle, synapse_memory_pooled_block);
-
 	void
-		(*expand_pool_size)
+		(*reserve)
 			(synapse_memory_pool_handle, size_t);
-	void
-		(*shrink_pool_size)
-			(synapse_memory_pool_handle, size_t);
+	void*
+		(*block_pointer)
+			(synapse_memory_pooled_block);
 
 } synapse_memory_dynamic_pool;

@@ -1,12 +1,12 @@
-#include <memory/standard_heap.h>
-#include <memory/memory.h>
+#include <memory/export/memory_manager/standard_heap.h>
+#include <memory/export/memory.h>
 
 #include <memory/mman/standard_heap/stdheap.h>
 #include <stdlib.h>
 
 synapse_memory_dll
-synapse_memory_manager*
-	synapse_initialize_standard_heap()
+	synapse_memory_manager*
+		synapse_initialize_standard_heap()
 {
 	synapse_memory_manager*
 		ptr_mman
@@ -33,9 +33,9 @@ synapse_memory_manager*
 }
 
 synapse_memory_dll
-void
-	synapse_cleanup_standard_heap
-		(synapse_memory_manager* pMman)
+	void
+		synapse_cleanup_standard_heap
+			(synapse_memory_manager* pMman)
 {
 	synapse_memory_mman_stdheap_cleanup
 		(pMman->hnd_mman);

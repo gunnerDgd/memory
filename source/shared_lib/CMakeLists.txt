@@ -7,7 +7,7 @@ project(
 )
 
 file(
-  GLOB src_synapse_memory_dll CONFIGURE_DEPENDS
+  GLOB_RECURSE src_synapse_memory_dll CONFIGURE_DEPENDS
   ${CMAKE_CURRENT_SOURCE_DIR}/*.c
 )
 

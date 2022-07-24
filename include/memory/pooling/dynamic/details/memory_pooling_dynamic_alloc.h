@@ -10,9 +10,5 @@ void
 		(__synapse_memory_pooling_dynamic*, __synapse_memory_pooling_dynamic_block*);
 
 size_t
-	__synapse_memory_pooling_dynamic_expand
-		(__synapse_memory_pooling_dynamic*, size_t);
-
-size_t
-	__synapse_memory_pooling_dynamic_shrink
+	__synapse_memory_pooling_dynamic_reserve
 		(__synapse_memory_pooling_dynamic*, size_t);

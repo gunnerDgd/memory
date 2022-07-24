@@ -1,8 +1,6 @@
 #include <memory/mman/nonpaged/details/mman_nonpaged_init.h>
 #include <memory/mman/nonpaged/details/mman_nonpaged_manip.h>
 
-#include <memory/system/allocate.h>
-
 #include <Windows.h>
 
 __synapse_memory_mman_nonpaged_bucket*

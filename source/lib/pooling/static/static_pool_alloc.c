@@ -14,6 +14,22 @@ synapse_memory_pooled_block
 		ptr_chunk;
 }
 
+synapse_memory_pooled_block
+	synapse_memory_pooling_static_allocate_until_success
+		(synapse_memory_pool_handle pMpool)
+{
+	synapse_memory_opaque_init
+		(synapse_memory_pooled_block, hnd_mblock, 0);
+	
+	while
+		(!synapse_memory_opaque_reference
+			((hnd_mblock
+				= synapse_memory_pooling_static_allocate
+						(pMpool))));
+	
+	return hnd_mblock;
+}
+
 void
 	synapse_memory_pooling_static_deallocate
 		(synapse_memory_pool_handle  pMpool,

@@ -6,7 +6,10 @@ project(
   LANGUAGES C
 )
 
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/system)
+
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mman/standard_heap)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mman/nonpaged)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pooling/static)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pooling/dynamic)
@@ -22,7 +25,7 @@ add_dependencies(
   synapse_memory_pooling_static_lib
   synapse_memory_mman_standard_heap_lib
   synapse_memory_mman_nonpaged_lib
-  synapse_memory_mman_system_lib
+  synapse_memory_system_lib
 )
 
 target_link_libraries(
@@ -32,5 +35,5 @@ target_link_libraries(
   synapse_memory_pooling_static_lib
   synapse_memory_mman_standard_heap_lib
   synapse_memory_mman_nonpaged_lib
-  synapse_memory_mman_system_lib
+  synapse_memory_system_lib
 )

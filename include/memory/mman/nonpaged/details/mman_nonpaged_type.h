@@ -1,3 +1,4 @@
+#pragma once
 #include <memory/interface/memory_manager.h>
 
 #include <stdint.h>

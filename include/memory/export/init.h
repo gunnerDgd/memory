@@ -11,7 +11,7 @@
 synapse_memory_dll
     void
 	    synapse_memory_initialize_system
-		    (uint16_t, int, ...);
+		    (uint16_t);
 
 synapse_memory_dll
     void

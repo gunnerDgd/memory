@@ -17,9 +17,8 @@ synapse_memory_pooled_block
 	synapse_memory_pooling_dynamic_allocate_until_success
 		(synapse_memory_pool_handle pMpool)
 {
-	synapse_memory_pooled_block
-		hnd_block
-			= { .opaque = 0 };
+	synapse_memory_opaque_init
+		(synapse_memory_pooled_block, hnd_block, 0);
 
 	while(synapse_memory_opaque_reference
 				(hnd_block)
@@ -41,21 +40,12 @@ void
 }
 
 size_t
-	synapse_memory_pooling_dynamic_expand
+	synapse_memory_pooling_dynamic_reserve
 		(synapse_memory_pool_handle pMpool, size_t pExpandSize)
 {
 	return
-		__synapse_memory_pooling_dynamic_expand
+		__synapse_memory_pooling_dynamic_reserve
 			(synapse_memory_opaque_reference(pMpool), pExpandSize);
-}
-
-size_t
-	synapse_memory_pooling_dynamic_shrink
-		(synapse_memory_pool_handle pMpool, size_t pShrinkSize)
-{
-	return 
-		__synapse_memory_pooling_dynamic_shrink
-			(synapse_memory_opaque_reference(pMpool), pShrinkSize);
 }
 
 void*

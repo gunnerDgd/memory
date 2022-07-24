@@ -6,22 +6,22 @@ __synapse_memory_pooling_static_block*
 		(__synapse_memory_pooling_static* pMpool)
 {
 	__synapse_memory_pooling_static_block*
-		ptr_mblock;
+		ptr_pooled_block;
 
 	do
 	{
-		ptr_mblock
-			= pMpool->hnd_pool_stack;
+		ptr_pooled_block
+			= pMpool->ptr_pool_block_stack;
 		
-		if(!ptr_mblock)
+		if(!ptr_pooled_block)
 			return NULL;
-	} while (ptr_mblock
+	} while (ptr_pooled_block
 				!= InterlockedCompareExchange64
-						(&pMpool->hnd_pool_stack,
-							ptr_mblock->ptr_next, ptr_mblock));
+						(&pMpool->ptr_pool_block_stack,
+							ptr_pooled_block->ptr_next, ptr_pooled_block));
 		
 	return
-		ptr_mblock;
+		ptr_pooled_block;
 }
 
 void
@@ -37,7 +37,7 @@ void
 
 __try_first_push:
 	if(InterlockedCompareExchange64
-			(&pMpool->hnd_pool_stack,
+			(&pMpool->ptr_pool_block_stack,
 				pMpoolChunk, 0))
 					goto __try_push;
 	else
@@ -46,10 +46,10 @@ __try_push:
 	do
 	{
 		ptr_push
-			= pMpool->hnd_pool_stack;
+			= pMpool->ptr_pool_block_stack;
 	} while
 		(ptr_push
 			!= InterlockedCompareExchange64
-					(&pMpool->hnd_pool_stack,
+					(&pMpool->ptr_pool_block_stack,
 						ptr_push->ptr_next, ptr_push));
 }

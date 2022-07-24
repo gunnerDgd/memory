@@ -53,7 +53,7 @@ void
 }
 
 void
-    __synapse_memory_mman_nonpaged_deallocate_all
+    synapse_memory_mman_nonpaged_deallocate_all
         (synapse_memory_manager_handle pNonpaged)
 {
     return;

@@ -28,6 +28,9 @@ synapse_memory_dll
 	hnd_static_pool
 		->deallocate
 			= &synapse_memory_pooling_static_deallocate;
+	hnd_static_pool
+		->block_pointer
+			= &synapse_memory_pooling_static_retrieve_pointer;
 
 	hnd_static_pool
 		->hnd_static_pool

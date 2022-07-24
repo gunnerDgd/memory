@@ -6,8 +6,7 @@ synapse_memory_pool_handle
 		(synapse_memory_manager* pMman, size_t pBlockSize, size_t pInitPoolSize)
 {
 	synapse_memory_opaque_init
-		(synapse_memory_pool_handle, hnd_mpool,
-			NULL);
+		(synapse_memory_pool_handle, hnd_mpool, NULL);
 
 	if(!pBlockSize || !pInitPoolSize)
 		return

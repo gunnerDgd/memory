@@ -14,11 +14,7 @@ void
 		(synapse_memory_pool_handle, synapse_memory_pooled_block);
 
 size_t
-	synapse_memory_pooling_dynamic_expand
-		(synapse_memory_pool_handle, size_t);
-
-size_t
-	synapse_memory_pooling_dynamic_shrink
+	synapse_memory_pooling_dynamic_reserve
 		(synapse_memory_pool_handle, size_t);
 
 void*

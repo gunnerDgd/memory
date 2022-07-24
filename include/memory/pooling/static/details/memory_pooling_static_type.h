@@ -9,8 +9,6 @@ typedef struct
 	void* 
 		blk_parent_pool;
 
-	synapse_memory_block
-		hnd_mblock_block_memory ;	
 	volatile
 		struct __synapse_memory_pooling_static_block*
 			ptr_next;
@@ -23,12 +21,14 @@ typedef struct
 		ptr_pool_mman;
 	volatile
 		__synapse_memory_pooling_static_block*
-			hnd_pool_stack;
+			ptr_pool_block_stack;
+	__synapse_memory_pooling_static_block*
+			ptr_pool_block;
 
 	synapse_memory_block
-		ptr_pooled_mblock,
-		ptr_mpool_mblock;
+		mblock_pooled_memory,
+		mblock_pooled_block ;
 	void*
-		ptr_pooled_memory;
+		ptr_pooled;
 
 } __synapse_memory_pooling_static;

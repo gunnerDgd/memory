@@ -12,14 +12,14 @@ __synapse_memory_pooling_dynamic_block*
 	do
 	{
 		ptr_mblock
-			= pMpool->hnd_dynamic_stack;
+			= pMpool->ptr_dynamic_pool_stack;
 		
 		if(!ptr_mblock)
 			return NULL;
 	} while
 		(ptr_mblock 
 			!= InterlockedCompareExchange64
-					(&pMpool->hnd_dynamic_stack,
+					(&pMpool->ptr_dynamic_pool_stack,
 						ptr_mblock->ptr_next, ptr_mblock));
 
 	return
@@ -35,30 +35,25 @@ void
 				!= pDynamicPool)
 		return;
 
-__try_first_push:
-	if(InterlockedCompareExchange64
-			(&pDynamicPool->hnd_dynamic_stack,
-				pDynamicPoolBlock, 0))
-					goto __try_push;
-	else
-		return;
-__try_push:
+	pDynamicPoolBlock->ptr_next
+		= NULL;
 	do
 	{
 		pDynamicPoolBlock->ptr_next
-			= pDynamicPool->hnd_dynamic_stack;
+			= pDynamicPool->ptr_dynamic_pool_stack;
 	} while
-		(pDynamicPool->hnd_dynamic_stack
+		(pDynamicPoolBlock->ptr_next
 			!= InterlockedCompareExchange64
-					(&pDynamicPool->hnd_dynamic_stack,
+					(&pDynamicPool->ptr_dynamic_pool_stack,
 						pDynamicPoolBlock,
-							pDynamicPool->ptr_dynamic_mman));
+							pDynamicPoolBlock->ptr_next));
+
 	return;
 }
 
 size_t
-__synapse_memory_pooling_dynamic_expand
-	(__synapse_memory_pooling_dynamic* pMpool, size_t pExpandCount)
+	__synapse_memory_pooling_dynamic_reserve
+		(__synapse_memory_pooling_dynamic* pMpool, size_t pExpandCount)
 {
 	while (--pExpandCount != -1)
 	{
@@ -72,28 +67,5 @@ __synapse_memory_pooling_dynamic_expand
 	}
 
 	return
-		(pMpool->dynamic_pool_count += pExpandCount);
-}
-
-size_t
-__synapse_memory_pooling_dynamic_shrink
-	(__synapse_memory_pooling_dynamic* pMpool, size_t pShrinkCount)
-{
-	if(pShrinkCount > pMpool->dynamic_pool_count)
-		return
-			pMpool->dynamic_pool_count;
-
-	while (--pShrinkCount != -1)
-	{
-		__synapse_memory_pooling_dynamic_block* 
-			ptr_block
-				= __synapse_memory_pooling_dynamic_allocate
-						(pMpool);
-
-		__synapse_memory_pooling_dynamic_block_cleanup
-			(pMpool, ptr_block);
-	}
-
-	return
-		(pMpool->dynamic_pool_count -= pShrinkCount);
+		(pMpool->count_dynamic_pool += pExpandCount);
 }

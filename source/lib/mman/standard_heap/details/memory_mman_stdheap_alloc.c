@@ -1,21 +1,28 @@
 #include <memory/mman/standard_heap/details/memory_mman_stdheap_alloc.h>
 #include <memory/export/memory.h>
 
+#include <memory/system/allocation/system_allocate.h>
+
 __synapse_memory_mman_stdheap*
 	__synapse_memory_mman_stdheap_allocate
 		(__synapse_memory_mman_stdheap_head* pHead, void* pHint, size_t pSize)
 {
 	__synapse_memory_mman_stdheap*
 		ptr_alloc
-			= malloc
-					(sizeof(__synapse_memory_mman_stdheap));
+			= synapse_memory_allocate_from_system
+					(NULL, sizeof(__synapse_memory_mman_stdheap));
 
-	ptr_alloc->stdheap_ptr		  = malloc(pSize);
-	ptr_alloc->stdheap_size		  = pSize;
-	ptr_alloc->stdheap_alloc_head = pHead;
+	ptr_alloc->stdheap_ptr		  
+		= malloc(pSize);
+	ptr_alloc->stdheap_size		  
+		= pSize;
+	ptr_alloc->stdheap_alloc_head 
+		= pHead;
 
-	ptr_alloc->stdheap_prev = pHead->ptr_back;
-	ptr_alloc->stdheap_next = NULL;
+	ptr_alloc->stdheap_prev 
+		= pHead->ptr_back;
+	ptr_alloc->stdheap_next 
+		= NULL;
 
 	if (!pHead->ptr_back) {
 		pHead->ptr_back
@@ -59,8 +66,8 @@ void
 
 	free
 		(pHeap->stdheap_ptr);
-	free
-		(pHeap);
+	synapse_memory_deallocate_from_system
+		(pHeap, sizeof(__synapse_memory_mman_stdheap));
 }
 
 void
@@ -82,7 +89,7 @@ void
 
 		free
 			(ptr_dealloc->stdheap_ptr);
-		free
-			(ptr_dealloc);
+		synapse_memory_deallocate_from_system
+			(ptr_dealloc, sizeof(__synapse_memory_mman_stdheap));
 	}
 }
