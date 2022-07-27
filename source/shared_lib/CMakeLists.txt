@@ -47,6 +47,10 @@ if("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
       synapse_memory_dll 
       PRIVATE
       /Dsynapse_memory_export_mode
+    )
+    target_compile_options(
+      synapse_memory_dll 
+      PRIVATE
       /DSYNAPSE_BUILD_ENVIRONMENT_MSVC
     )
 elseif ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
