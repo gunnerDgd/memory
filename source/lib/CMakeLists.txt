@@ -29,6 +29,7 @@ target_include_directories(
 if("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
   target_compile_options(
     synapse_memory_lib
+    PUBLIC
     /DSYNAPSE_BUILD_ENVIRONMENT_MSVC
   )
 endif()

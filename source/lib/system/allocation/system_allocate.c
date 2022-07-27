@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #ifndef SYNAPSE_BUILD_ENVIRONMENT_MSVC
 #include <stdalign.h>
+#else
+#include <malloc.h>
 #endif
 
 void*
