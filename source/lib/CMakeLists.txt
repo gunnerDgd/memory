@@ -6,34 +6,22 @@ project(
   LANGUAGES C
 )
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/system)
-
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mman/standard_heap)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mman/nonpaged)
-
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pooling/static)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pooling/dynamic)
+file(
+  GLOB_RECURSE
+  src_synapse_memory_lib
+  CONFIGURE_DEPENDS
+  ${CMAKE_CURRENT_SOURCE_DIR}/*.c
+)
 
 add_library(
   synapse_memory_lib
-  INTERFACE
+  STATIC
+  ${src_synapse_memory_lib}
 )
 
-add_dependencies(
+target_include_directories(
   synapse_memory_lib
-  synapse_memory_pooling_dynamic_lib
-  synapse_memory_pooling_static_lib
-  synapse_memory_mman_standard_heap_lib
-  synapse_memory_mman_nonpaged_lib
-  synapse_memory_system_lib
-)
-
-target_link_libraries(
-  synapse_memory_lib
-  INTERFACE
-  synapse_memory_pooling_dynamic_lib
-  synapse_memory_pooling_static_lib
-  synapse_memory_mman_standard_heap_lib
-  synapse_memory_mman_nonpaged_lib
-  synapse_memory_system_lib
+  PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/../../include
+  ${CMAKE_SOURCE_DIR}/include
 )

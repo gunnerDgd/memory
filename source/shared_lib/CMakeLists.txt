@@ -7,34 +7,58 @@ project(
 )
 
 file(
-  GLOB_RECURSE src_synapse_memory_dll CONFIGURE_DEPENDS
+  GLOB_RECURSE 
+  src_synapse_memory_lib
+  CONFIGURE_DEPENDS
+  ${CMAKE_CURRENT_SOURCE_DIR}/../lib/*.c
+)
+
+file(
+  GLOB_RECURSE 
+  src_synapse_memory_dll 
+  CONFIGURE_DEPENDS
   ${CMAKE_CURRENT_SOURCE_DIR}/*.c
 )
 
 add_library(
-  synapse_memory_dll SHARED 
+  synapse_memory_dll 
+  SHARED 
   ${src_synapse_memory_dll}
+  ${src_synapse_memory_lib}
 )
 
 target_include_directories(
   synapse_memory_dll 
   PUBLIC 
   ${CMAKE_CURRENT_SOURCE_DIR}/../../include
-)
-
-target_include_directories(
-  synapse_memory_dll 
-  PUBLIC 
   ${CMAKE_SOURCE_DIR}/include
 )
 
-target_compile_options(
-  synapse_memory_dll
-  PRIVATE 
-  /Dsynapse_memory_export_mode
-)
+if("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
+    set_target_properties(
+      synapse_memory_dll
+        PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/lib/build
+        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+    )
 
-target_link_libraries(
-  synapse_memory_dll
-  synapse_memory_lib
-)
+    target_compile_options(
+      synapse_memory_dll 
+      PRIVATE
+      /Dsynapse_memory_export_mode
+    )
+elseif ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
+  set_target_properties(
+    synapse_memory_dll
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+  )
+    target_compile_options(
+      synapse_memory_dll 
+      PRIVATE 
+      -Dsynapse_memory_export_mode
+    )
+endif()
