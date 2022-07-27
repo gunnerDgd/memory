@@ -20,11 +20,11 @@ synapse_memory_pooled_block
 	synapse_memory_opaque_init
 		(synapse_memory_pooled_block, hnd_block, 0);
 
-	while(synapse_memory_opaque_reference
+	while(!(synapse_memory_opaque_reference
 				(hnd_block)
 						= __synapse_memory_pooling_dynamic_allocate
 								(synapse_memory_opaque_reference
-									(pMpool)));
+									(pMpool))));
 
 	return
 		hnd_block;

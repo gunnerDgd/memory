@@ -35,8 +35,6 @@ void
 				!= pDynamicPool)
 		return;
 
-	pDynamicPoolBlock->ptr_next
-		= NULL;
 	do
 	{
 		pDynamicPoolBlock->ptr_next
