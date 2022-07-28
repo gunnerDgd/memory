@@ -62,16 +62,10 @@ __synapse_memory_pooling_dynamic_block*
 	__synapse_memory_pooling_dynamic_block*
 		ptr_block
 			= synapse_memory_aligned_allocate_from_system
-					(NULL, sizeof(__synapse_memory_pooling_dynamic_block), 16);
-
-	ptr_block->mblock_block_pooled_memory
-		= pDynamicPool->ptr_dynamic_mman->allocate
-			(pDynamicPool->ptr_dynamic_mman->hnd_mman,
-				NULL, pDynamicPool->size_dynamic_pool_block);
-	
-	ptr_block->ptr_pooled_memory
-		= pDynamicPool->ptr_dynamic_mman->block_pointer
-			(ptr_block->mblock_block_pooled_memory);
+					(NULL, 
+						sizeof(__synapse_memory_pooling_dynamic_block) 
+							+ pDynamicPool->size_dynamic_pool_block, 
+								16);
 	
 	ptr_block->ptr_next
 		= NULL;
@@ -86,10 +80,8 @@ void
 		(__synapse_memory_pooling_dynamic*		 pDynamicPool,
 		 __synapse_memory_pooling_dynamic_block* pDynamicPoolBlock)
 {
-	pDynamicPool->ptr_dynamic_mman->deallocate
-		(pDynamicPool->ptr_dynamic_mman->hnd_mman,
-			pDynamicPoolBlock->mblock_block_pooled_memory);
 	synapse_memory_aligned_deallocate_from_system
 		(pDynamicPoolBlock,
-			sizeof(__synapse_memory_pooling_dynamic_block));
+			sizeof(__synapse_memory_pooling_dynamic_block)
+				+ pDynamicPool->size_dynamic_pool_block);
 }

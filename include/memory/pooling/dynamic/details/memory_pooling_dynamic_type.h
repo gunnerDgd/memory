@@ -6,13 +6,8 @@ typedef struct
 	__synapse_memory_pooling_dynamic_block
 {
 	void*
-		ptr_pooled_memory;
-	void*
 		ptr_parent_pool;
-	
-	synapse_memory_block
-		mblock_block_pooled_memory;
-	
+
 	volatile
 		struct 
 			__synapse_memory_pooling_dynamic_block

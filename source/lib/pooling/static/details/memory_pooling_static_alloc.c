@@ -1,7 +1,7 @@
 #include <memory/pooling/static/details/memory_pooling_static_alloc.h>
 #include <Windows.h>
 
-__synapse_memory_pooling_static_block*
+void*
 	__synapse_memory_pooling_static_allocate
 		(__synapse_memory_pooling_static* pMpool)
 {
@@ -21,7 +21,8 @@ __synapse_memory_pooling_static_block*
 							ptr_pooled_block->ptr_next, ptr_pooled_block));
 		
 	return
-		ptr_pooled_block;
+		(uint8_t*)ptr_pooled_block
+			+ sizeof(__synapse_memory_pooling_static_block);
 }
 
 void
@@ -35,14 +36,6 @@ void
 	if (pMpool != pMpoolChunk->blk_parent_pool)
 		return;
 
-__try_first_push:
-	if(InterlockedCompareExchange64
-			(&pMpool->ptr_pool_block_stack,
-				pMpoolChunk, 0))
-					goto __try_push;
-	else
-		return;
-__try_push:
 	do
 	{
 		ptr_push

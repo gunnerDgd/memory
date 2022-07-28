@@ -3,22 +3,17 @@
 
 #include <memory/system/allocation/system_allocate.h>
 
-__synapse_memory_mman_stdheap*
+void*
 	__synapse_memory_mman_stdheap_allocate
 		(__synapse_memory_mman_stdheap_head* pHead, void* pHint, size_t pSize)
 {
 	__synapse_memory_mman_stdheap*
 		ptr_alloc
-			= synapse_memory_allocate_from_system
-					(NULL, sizeof(__synapse_memory_mman_stdheap));
+			= malloc
+				(NULL, sizeof(__synapse_memory_mman_stdheap) + pSize);
 
-	ptr_alloc->stdheap_ptr		  
-		= malloc(pSize);
-	ptr_alloc->stdheap_size		  
-		= pSize;
 	ptr_alloc->stdheap_alloc_head 
 		= pHead;
-
 	ptr_alloc->stdheap_prev 
 		= pHead->ptr_back;
 	ptr_alloc->stdheap_next 
@@ -39,7 +34,8 @@ __synapse_memory_mman_stdheap*
 	}
 
 	return
-		ptr_alloc;
+		(uint8_t*)ptr_alloc
+				+ sizeof(__synapse_memory_mman_stdheap);
 }
 
 void
@@ -65,9 +61,7 @@ void
 			= pHeap->stdheap_prev;
 
 	free
-		(pHeap->stdheap_ptr);
-	synapse_memory_deallocate_from_system
-		(pHeap, sizeof(__synapse_memory_mman_stdheap));
+		(pHeap);
 }
 
 void
@@ -88,8 +82,6 @@ void
 			= ptr_seek->stdheap_next;
 
 		free
-			(ptr_dealloc->stdheap_ptr);
-		synapse_memory_deallocate_from_system
-			(ptr_dealloc, sizeof(__synapse_memory_mman_stdheap));
+			(ptr_dealloc);
 	}
 }

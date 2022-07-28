@@ -6,8 +6,8 @@
 #include <string.h>
 
 __synapse_memory_mman_stdheap_head*
-__synapse_memory_mman_stdheap_initialize
-	()
+	__synapse_memory_mman_stdheap_initialize
+		()
 {
 	__synapse_memory_mman_stdheap_head* 
 		ptr_mman
@@ -20,8 +20,8 @@ __synapse_memory_mman_stdheap_initialize
 }
 
 void
-__synapse_memory_mman_stdheap_cleanup
-	(__synapse_memory_mman_stdheap_head* pMman)
+	__synapse_memory_mman_stdheap_cleanup
+		(__synapse_memory_mman_stdheap_head* pMman)
 {
 	__synapse_memory_mman_stdheap
 		*ptr_seek
@@ -36,9 +36,7 @@ __synapse_memory_mman_stdheap_cleanup
 		ptr_seek
 			= ptr_seek->stdheap_next;
 		free
-			(ptr_dealloc->stdheap_ptr);
-		synapse_memory_deallocate_from_system
-			(ptr_dealloc, sizeof(__synapse_memory_mman_stdheap));
+			(ptr_dealloc);
 	}
 
 	synapse_memory_deallocate_from_system

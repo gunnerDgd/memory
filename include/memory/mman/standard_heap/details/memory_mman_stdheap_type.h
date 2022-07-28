@@ -5,10 +5,6 @@ typedef struct
 	__synapse_memory_mman_stdheap
 {
 	void*
-		stdheap_ptr;
-	size_t
-		stdheap_size;
-	void*
 		stdheap_alloc_head;
 
 	struct __synapse_memory_mman_stdheap

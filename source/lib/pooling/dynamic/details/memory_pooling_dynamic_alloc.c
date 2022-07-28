@@ -2,7 +2,7 @@
 #include <memory/pooling/dynamic/details/memory_pooling_dynamic_alloc.h>
 #include <Windows.h>
 
-__synapse_memory_pooling_dynamic_block*
+void*
 	__synapse_memory_pooling_dynamic_allocate
 		(__synapse_memory_pooling_dynamic* pMpool)
 {

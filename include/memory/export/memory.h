@@ -40,18 +40,3 @@ synapse_memory_dll
 	void
 		synapse_system_deallocate_page
 			(void*, size_t);
-
-synapse_memory_dll
-	bool
-		synapse_query_paging_support
-			();
-
-synapse_memory_dll
-	size_t
-		synapse_query_system_page_size
-			();
-
-synapse_memory_dll
-	bool
-		synapse_query_aligned_allocation_support
-			();

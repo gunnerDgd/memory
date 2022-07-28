@@ -1,7 +1,7 @@
 #pragma once
 #include <memory/pooling/static/details/memory_pooling_static_type.h>
 
-__synapse_memory_pooling_static_block*
+void*
 	__synapse_memory_pooling_static_allocate
 		(__synapse_memory_pooling_static*);
 

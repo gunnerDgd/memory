@@ -19,12 +19,6 @@ synapse_memory_dll
 		= &synapse_memory_mman_stdheap_deallocate;
 	ptr_mman->deallocate_all
 		= &synapse_memory_mman_stdheap_deallocate_all;
-
-	ptr_mman->block_pointer
-		= &synapse_memory_mman_stdheap_block_pointer;
-	ptr_mman->block_size
-		= &synapse_memory_mman_stdheap_block_size;
-
 	ptr_mman->hnd_mman
 		= synapse_memory_mman_stdheap_initialize();
 

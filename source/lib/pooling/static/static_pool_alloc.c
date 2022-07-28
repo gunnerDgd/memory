@@ -1,51 +1,38 @@
 #include <memory/pooling/static/static_pool_alloc.h>
 #include <memory/pooling/static/details/memory_pooling_static_alloc.h>
 
-synapse_memory_pooled_block
+void*
 	synapse_memory_pooling_static_allocate
 		(synapse_memory_pool_handle pMpool)
 {
-	synapse_memory_opaque_init
-		(synapse_memory_pooled_block, ptr_chunk,
-			__synapse_memory_pooling_static_allocate
-				(synapse_memory_opaque_reference(pMpool)));
-
 	return
-		ptr_chunk;
+		__synapse_memory_pooling_static_allocate
+				(synapse_memory_opaque_reference(pMpool));
 }
 
-synapse_memory_pooled_block
+void*
 	synapse_memory_pooling_static_allocate_until_success
 		(synapse_memory_pool_handle pMpool)
 {
-	synapse_memory_opaque_init
-		(synapse_memory_pooled_block, hnd_mblock, 0);
-	
+	void*
+		ptr_alloc = 0;
+
 	while
-		(!synapse_memory_opaque_reference
-			((hnd_mblock
+		(!(ptr_alloc
 				= synapse_memory_pooling_static_allocate
-						(pMpool))));
+						(pMpool)));
 	
-	return hnd_mblock;
+	return 
+		ptr_alloc;
 }
 
 void
 	synapse_memory_pooling_static_deallocate
-		(synapse_memory_pool_handle  pMpool,
-		 synapse_memory_pooled_block pDeallocChunk)
+		(synapse_memory_pool_handle pMpool,
+		 void* 						pDeallocChunk)
 {
 	__synapse_memory_pooling_static_deallocate
 		(synapse_memory_opaque_reference(pMpool), 
-		 synapse_memory_opaque_reference(pDeallocChunk));
-}
-
-void*
-	synapse_memory_pooling_static_retrieve_pointer
-		(synapse_memory_pooled_block pRetriveChunk)
-{
-	return 
-		synapse_memory_opaque_cast
-			(pRetriveChunk, __synapse_memory_pooling_static_block*)
-					->blk_pointer;
+		 	(uint8_t*)pDeallocChunk
+		 		- sizeof(__synapse_memory_pooling_static_block));
 }

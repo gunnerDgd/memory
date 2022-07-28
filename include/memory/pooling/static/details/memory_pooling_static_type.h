@@ -20,14 +20,10 @@ typedef struct
 	synapse_memory_manager*
 		ptr_pool_mman;
 	volatile
-		__synapse_memory_pooling_static_block*
-			ptr_pool_block_stack;
-	__synapse_memory_pooling_static_block*
-			ptr_pool_block;
+		__synapse_memory_pooling_static_block
+			*ptr_pool_block_stack,
+			*ptr_pool_block;
 
-	synapse_memory_block
-		mblock_pooled_memory,
-		mblock_pooled_block ;
 	void*
 		ptr_pooled;
 

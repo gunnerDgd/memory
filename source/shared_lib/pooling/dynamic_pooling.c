@@ -24,8 +24,6 @@ synapse_memory_dll
 		= &synapse_memory_pooling_dynamic_deallocate;
 	ptr_mpool->reserve
 		= &synapse_memory_pooling_dynamic_reserve;
-	ptr_mpool->block_pointer
-		= &synapse_memory_pooling_dynamic_retrieve_pointer;
 
 	ptr_mpool->hnd_dynamic_pool
 		= synapse_memory_pooling_dynamic_initialize
