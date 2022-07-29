@@ -20,11 +20,6 @@ synapse_memory_dll
     ptr_mman->deallocate_all
         = &synapse_memory_mman_nonpaged_deallocate_all;
     
-    ptr_mman->block_pointer
-        = &synapse_memory_mman_nonpaged_block_pointer;
-    ptr_mman->block_size
-        = &synapse_memory_mman_nonpaged_block_size;
-    
     ptr_mman->hnd_mman
         = synapse_memory_mman_nonpaged_initialize
             ();

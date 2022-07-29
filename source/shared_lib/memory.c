@@ -4,8 +4,6 @@
 #include <memory/system/allocation/system_allocate.h>
 #include <memory/system/allocation/system_page.h>
 
-#include <memory/system/support/system_support.h>
-
 #include <memory/mman/standard_heap/stdheap.h>
 #include <memory/mman/nonpaged/nonpaged_init.h>
 
@@ -133,31 +131,4 @@ synapse_memory_dll
 	return
 		synapse_memory_deallocate_page_from_system
 			(pDealloc, pDeallocSize);
-}
-
-synapse_memory_dll
-	bool
-		synapse_query_paging_support
-			()
-{
-	return
-		synapse_memory_query_paging_support();
-}
-
-synapse_memory_dll
-	size_t
-		synapse_query_system_page_size
-			()
-{
-	return
-		synapse_memory_query_page_size();
-}
-
-synapse_memory_dll
-	bool
-		synapse_query_aligned_allocation_support
-			()
-{
-	return
-		synapse_memory_query_aligned_allocation();
 }

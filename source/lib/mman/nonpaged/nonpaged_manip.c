@@ -1,55 +1,35 @@
 #include <memory/mman/nonpaged/nonpaged_manip.h>
 #include <memory/mman/nonpaged/details/mman_nonpaged_manip.h>
 
-synapse_memory_block
+void*
     synapse_memory_mman_nonpaged_allocate
         (synapse_memory_manager_handle pNonpaged, 
             void* pHint, size_t pSize)
 {
-    synapse_memory_opaque_init
-        (synapse_memory_block, hnd_memory, NULL);
+    uint8_t
+        idx_bucket = 9;
     
-    if(pSize > (1 << 9))
-        return hnd_memory;
-    
-    for(size_t it_index = 9 ;
-               it_index >= 5;
-               it_index--)
-        if((1 << it_index) & pSize)
-        {
-__nonpaged_alloc:
-            synapse_memory_opaque_reference
-                (hnd_memory)
-                    = __synapse_memory_mman_nonpaged_allocate
-                            (synapse_memory_opaque_reference
-                                (pNonpaged), it_index - 5);
-            
-            if(!synapse_memory_opaque_reference
-                    (hnd_memory))
-            {
-                __synapse_memory_mman_nonpaged_reserve
-                    (synapse_memory_opaque_reference
-                        (pNonpaged), it_index - 5);
-                
-                goto __nonpaged_alloc;
-            }
-            
+    for ( ; idx_bucket >= 5 ; idx_bucket--)
+        if(pSize == (1 << idx_bucket))
             break;
-        }
-
+        else if (pSize & (1 << idx_bucket))
+            break;
+    
     return
-        hnd_memory;
+        __synapse_memory_mman_nonpaged_allocate
+            (synapse_memory_opaque_reference
+                (pNonpaged), idx_bucket - 5);
 }
 
 void
     synapse_memory_mman_nonpaged_deallocate
-        (synapse_memory_manager_handle pNonpaged, synapse_memory_block pBlock)
+        (synapse_memory_manager_handle pNonpaged, void* pDealloc)
 {
     __synapse_memory_mman_nonpaged_deallocate
         (synapse_memory_opaque_reference
             (pNonpaged),
-         synapse_memory_opaque_reference
-            (pBlock));
+         (uint8_t*)pDealloc
+            - sizeof(__synapse_memory_mman_nonpaged_block));
 }
 
 void
@@ -57,24 +37,4 @@ void
         (synapse_memory_manager_handle pNonpaged)
 {
     return;
-}
-
-void*
-    synapse_memory_mman_nonpaged_block_pointer
-        (synapse_memory_block pBlock)
-{
-    return
-        synapse_memory_opaque_cast
-            (pBlock, __synapse_memory_mman_nonpaged_bucket*)
-                ->ptr_nonpaged;
-}
-
-size_t
-    synapse_memory_mman_nonpaged_block_size
-        (synapse_memory_block pBlock)
-{
-    return
-        (synapse_memory_opaque_cast
-            (pBlock, __synapse_memory_mman_nonpaged_bucket*)
-                ->idx_nonpaged_index << 5);
 }

@@ -1,5 +1,4 @@
 #include <memory/system/allocation/system_page.h>
-#include <memory/system/support/system_support.h>
 #include <Windows.h>
 
 void*
@@ -9,7 +8,7 @@ void*
     return
         VirtualAlloc
             (pAllocHint,
-                pAllocPageCount * synapse_memory_query_page_size(),
+                pAllocPageCount * 4096,
                     MEM_COMMIT, PAGE_READWRITE);
 }
 

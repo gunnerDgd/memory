@@ -3,117 +3,50 @@
 
 #include <Windows.h>
 
-__synapse_memory_mman_nonpaged_bucket*
+void*
     __synapse_memory_mman_nonpaged_allocate
         (__synapse_memory_mman_nonpaged* pNonpaged, size_t pAllocRound)
 {
-    __synapse_memory_mman_nonpaged_bucket*
+    __synapse_memory_mman_nonpaged_block*
         ptr_mblock 
             = NULL;
 
     do
     {
         ptr_mblock
-            = pNonpaged->hnd_pooled[pAllocRound];
+            = pNonpaged->hnd_pooled[pAllocRound].ptr_bucket_block;
         
         if(!ptr_mblock)
             return NULL;
     } while
         (ptr_mblock
             != InterlockedCompareExchange64
-                    (&pNonpaged->hnd_pooled[pAllocRound],
-                        ptr_mblock->ptr_next, ptr_mblock));
+                    (&pNonpaged->hnd_pooled[pAllocRound].ptr_bucket_block,
+                        ptr_mblock->ptr_next_block,
+                            ptr_mblock));
 
     return
-        ptr_mblock;
-}
-
-void
-    __synapse_memory_mman_nonpaged_allocate_bucket_page
-        (__synapse_memory_mman_nonpaged*             pNonpaged,
-         __synapse_memory_mman_nonpaged_bucket_page* pNonpagedPage)
-{
-
-__try_first_allocate_page:
-    if(InterlockedCompareExchange64
-            (&pNonpaged->hnd_pooled_page,
-                pNonpagedPage, 0))
-                    goto __try_allocate_page;
-    else
-        return;
-__try_allocate_page:
-    do
-    {
-        pNonpagedPage->ptr_next
-            = pNonpaged->hnd_pooled;
-    } while
-        (pNonpaged->hnd_pooled
-            != InterlockedCompareExchange64
-                    (&pNonpaged->hnd_pooled, pNonpagedPage,
-                        pNonpaged->hnd_pooled_page));
-}
-
-void
-    __synapse_memory_mman_nonpaged_allocate_bucket
-        (__synapse_memory_mman_nonpaged*        pNonpaged, 
-         __synapse_memory_mman_nonpaged_bucket* pBucket, 
-         void*                                  pNonpagedPtr,
-         uint8_t                                pNonpagedIndex)
-{
-    __synapse_memory_mman_nonpaged_bucket*
-        ptr_bucket
-            = __synapse_memory_mman_nonpaged_initialize_bucket
-                    (pNonpaged);
-    
-    ptr_bucket->ptr_nonpaged
-        = pNonpagedPtr;
-    
-__try_first_allocate:
-    if(InterlockedCompareExchange64
-            (&pNonpaged->hnd_pooled[pNonpagedIndex], 
-                ptr_bucket, 0))
-                    goto __try_allocate;
-    else
-        return;
-
-__try_allocate:
-    do
-    {
-        ptr_bucket->ptr_next
-            = pNonpaged->hnd_pooled[pNonpagedIndex];
-    } while
-        (ptr_bucket
-            != InterlockedCompareExchange64
-                    (&pNonpaged->hnd_pooled[pNonpagedIndex], ptr_bucket,
-                        pNonpaged->hnd_pooled));
-    
-    return;
+        (uint8_t*)ptr_mblock
+            + sizeof(__synapse_memory_mman_nonpaged_block);
 }
 
 void
     __synapse_memory_mman_nonpaged_deallocate
-        (__synapse_memory_mman_nonpaged*        pNonpaged,
-         __synapse_memory_mman_nonpaged_bucket* pNonpagedBlock)
+        (__synapse_memory_mman_nonpaged*       pNonpaged,
+         __synapse_memory_mman_nonpaged_block* pNonpagedBlock)
 {
-    __synapse_memory_mman_nonpaged_bucket*
+    __synapse_memory_mman_nonpaged_block*
         ptr_bucket;
-    if(pNonpagedBlock->ptr_parent_pool
+
+    if(pNonpagedBlock->ptr_nonpaged_parent
             != pNonpaged)
                     return;
 
-__try_first_deallocate:
-    if(InterlockedCompareExchange64
-            (&pNonpaged->hnd_pooled,
-                pNonpagedBlock, NULL))
-                    goto __try_deallocate;
-    else
-        return;
-__try_deallocate:
     do
     {
         ptr_bucket
             = pNonpaged->hnd_pooled;
-        pNonpagedBlock->ptr_next
+        pNonpagedBlock->ptr_next_block
             = ptr_bucket;
     } while
         (ptr_bucket
@@ -125,33 +58,69 @@ __try_deallocate:
 }
 
 void
+    __synapse_memory_mman_nonpaged_reserve_page
+        (__synapse_memory_mman_nonpaged*      pNonpaged, 
+         __synapse_memory_mman_nonpaged_page* pNonpagedPage)
+{
+    do
+    {
+        pNonpagedPage->ptr_next
+            = pNonpaged->hnd_pooled_page;
+    } while
+        (pNonpagedPage->ptr_next
+            != InterlockedCompareExchange64
+                    (&pNonpaged->hnd_pooled_page,
+                        pNonpagedPage,
+                            pNonpagedPage->ptr_next));
+}
+
+void
     __synapse_memory_mman_nonpaged_reserve
         (__synapse_memory_mman_nonpaged* pNonpaged, 
          uint8_t                         pBucketIndex)
 {
     size_t
         size_bucket
-            = (1 << (pBucketIndex + 5));
+            = (1 << (pBucketIndex + 5)),
+        count_bucket
+            = __synapse_memory_mman_nonpaged_page_size
+                / (sizeof(__synapse_memory_mman_nonpaged_block) + size_bucket);
     
-    __synapse_memory_mman_nonpaged_bucket_page*
+    __synapse_memory_mman_nonpaged_page*
         ptr_nonpaged_page
-            = __synapse_memory_mman_nonpaged_initialize_bucket_page
+            = __synapse_memory_mman_nonpaged_initialize_page
                     (pNonpaged);
+    __synapse_memory_mman_nonpaged_block
+        *ptr_block_reserve
+            = ptr_nonpaged_page->ptr_alloc_page;
+    
+    __synapse_memory_mman_nonpaged_reserve_page
+        (pNonpaged, ptr_nonpaged_page);
 
-    for(size_t sz_alloc = 0;
-               sz_alloc < __synapse_nonpaged_bucket_page_size;
-               sz_alloc += size_bucket)
+    for(size_t it_reserve = 0;
+               it_reserve < count_bucket - 1;
+               it_reserve++)
     {
-        __synapse_memory_mman_nonpaged_bucket*
-            ptr_bucket
-                = __synapse_memory_mman_nonpaged_initialize_bucket
-                        (pNonpaged);
+        ptr_block_reserve->ptr_nonpaged_parent
+            = pNonpaged;
+        ptr_block_reserve->ptr_next_block
+            = (uint8_t*)ptr_block_reserve + size_bucket;
+        
+        do
+        {
+            ptr_block_reserve->ptr_next_block
+                = pNonpaged->hnd_pooled;
+        } while
+            (ptr_block_reserve->ptr_next_block
+                != InterlockedCompareExchange64
+                        (&pNonpaged->hnd_pooled_page,
+                            ptr_block_reserve,
+                                ptr_block_reserve->ptr_next_block));
 
-        __synapse_memory_mman_nonpaged_allocate_bucket_page
-            (pNonpaged, ptr_nonpaged_page);
-        __synapse_memory_mman_nonpaged_allocate_bucket
-            (pNonpaged, ptr_bucket,
-                (uint8_t*)ptr_nonpaged_page->ptr_page
-                    + sz_alloc, pBucketIndex);
+        ptr_block_reserve
+            = ptr_block_reserve->ptr_next_block;
     }
+
+    ptr_block_reserve->ptr_next_block->ptr_nonpaged_parent
+        = pNonpaged;
 }

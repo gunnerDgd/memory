@@ -41,11 +41,6 @@ synapse_memory_manager*
     ptr_mman->deallocate_all
         = NULL;
 
-    ptr_mman->block_pointer
-        = &synapse_memory_mman_nonpaged_block_pointer;
-    ptr_mman->block_size
-        = &synapse_memory_mman_nonpaged_block_size;
-
     return ptr_mman;
 }
 
